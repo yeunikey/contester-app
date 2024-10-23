@@ -33,13 +33,18 @@ function Sidebar({ toggle }: { toggle: any }) {
             const isDark = !darkMode;
             setDarkMode(isDark);
             dispatch.changeTheme(isDark)
-
+            let themeColorMeta = document.querySelector('meta[name="theme-color"]');
+            
             if (isDark) {
                 document.documentElement.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
+                if (!themeColorMeta) return;
+                themeColorMeta.setAttribute('content', '#363636');
             } else {
                 document.documentElement.classList.remove('dark');
                 localStorage.setItem('theme', 'light');
+                if (!themeColorMeta) return;
+                themeColorMeta.setAttribute('content', '#FFFFFF');
             }
         }
     };

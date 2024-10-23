@@ -15,7 +15,11 @@ export default function Layout({ children }: { children: any }) {
       const savedTheme = localStorage.getItem('theme');
       if (!savedTheme) return;
       dispatch.changeTheme(savedTheme == 'dark');
+      let themeColorMeta = document.querySelector('meta[name="theme-color"]');
+      if (!themeColorMeta) return;
+      themeColorMeta.setAttribute('content', savedTheme == 'dark' ? '#363636' : '#FFFFFF');
     }
+
   }, [])
 
   return (
