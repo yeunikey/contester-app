@@ -1,6 +1,7 @@
+'use client'
 
 import { useRouter } from 'next/navigation';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useState } from 'react';
 
 import Button from '@/components/button/Button';
 import { pages } from '@/core/constants/pages';
@@ -9,9 +10,40 @@ import CloseIcon from '../../../_assets/icons/close.svg';
 import LoginIcon from '../../../_assets/icons/login.svg';
 import ThemeIcon from '../../../_assets/icons/theme.svg';
 import s from './sidebar.module.css';
+import { useTheme } from '@/core/store/theme';
 
 function Sidebar({ toggle }: { toggle: any }) {
     
+    const [darkMode, setDarkMode] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                return true;
+            } else {
+                document.documentElement.classList.remove('dark');
+                return false;
+            }
+        }
+    });
+    let dispatch = useTheme((state) => state.dispatch)
+
+    const toggleDark = () => {
+        if (typeof window !== 'undefined') {
+            const isDark = !darkMode;
+            setDarkMode(isDark);
+            dispatch.changeTheme(isDark)
+
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    };
+
     const exit = () => {
         toggle()
     }
@@ -40,7 +72,7 @@ function Sidebar({ toggle }: { toggle: any }) {
                 </div>
 
                 <div className={s.sidebar__actions}>
-                    <div className={s.theme}>
+                    <div className={s.theme} onClick={toggleDark}>
                         <ThemeIcon className={s.theme__icon} alt='theme'></ThemeIcon>
                     </div>
                     <Button text='Login'
