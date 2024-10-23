@@ -1,0 +1,64 @@
+
+.content {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4;
+}
+
+.side {
+    @apply p-6 bg-white rounded-md max-h-fit;
+}
+
+:global(.dark) .side {
+    @apply bg-dark-background-2;
+}
+
+.title {
+    @apply font-semibold text-[24px] text-secondary-500 mb-2;
+}
+
+:global(.dark) .title {
+    @apply text-white;
+}
+
+.forms {
+    @apply my-2 flex flex-col gap-2;
+}
+
+.form {
+    @apply flex flex-col gap-2 w-full;
+}
+
+.form__title {
+    @apply text-secondary-500 font-semibold text-[16px];
+}
+
+:global(.dark) .form__title {
+    @apply text-white;
+}
+
+.form__item {
+    @apply py-2 px-4 bg-background rounded-md box-border w-full;
+}
+
+:global(.dark) .form__item {
+    @apply bg-dark-background text-white;
+}
+
+.form__item:focus {
+    @apply outline-none outline-primary-500;
+}
+
+.form__item::placeholder {
+    @apply text-[#999];
+}
+
+.form__locked {
+    @apply py-2 px-4 rounded-md bg-background text-secondary-400 cursor-not-allowed;
+}
+
+:global(.dark) .form__locked {
+    @apply bg-dark-background text-[#999];
+}
+
+.form__button {
+    @apply mt-4;
+}

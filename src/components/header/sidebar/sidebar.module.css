@@ -1,0 +1,49 @@
+/* Sidebar */
+
+.sidebar {
+    @apply fixed right-0 top-0 h-[100vh] min-w-[100vw] z-50;
+}
+
+.content {
+    @apply fixed right-0 top-0 h-[100vh] min-w-[50vw] p-8 bg-white border-l-[1px] border-secondary-100;
+}
+
+.sidebar__upper {
+    @apply flex justify-between items-end;
+}
+
+.sidebar__close {
+    @apply p-2;
+}
+
+.sidebar__close__icon {
+    @apply w-3 h-3;
+}
+
+.sidebar__close__icon path {
+    @apply fill-secondary-400;
+}
+
+.sidebar__title {
+    @apply text-secondary-500 font-bold text-[20px];
+}
+
+.sidebar__items {
+    @apply my-8 flex flex-col gap-2;
+}
+
+.sidebar__item {
+    @apply text-[16px] cursor-pointer text-secondary-300 hover:text-secondary-400;
+}
+
+.sidebar__actions {
+    @apply flex items-center gap-6 justify-between;
+}
+
+.theme {
+    @apply p-2 rounded-full border-solid border-secondary-200 border-[1px] cursor-pointer;
+}
+
+.theme__icon {
+    @apply w-4;
+}

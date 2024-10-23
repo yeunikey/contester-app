@@ -1,0 +1,36 @@
+
+.submit {
+    @apply my-6 flex flex-col gap-6 mx-auto max-w-full lg:max-w-[50%];
+}
+
+.submit__title {
+    @apply flex justify-center font-semibold text-secondary-500 text-[24px];
+}
+
+:global(.dark) .submit__title {
+    @apply text-white;
+}
+
+.submit__box {
+    @apply w-full h-32 bg-primary-500 rounded-md;
+}
+
+.form {
+    @apply flex flex-col gap-2 w-full;
+}
+
+.form__title {
+    @apply text-secondary-500 font-semibold text-[16px];
+}
+
+:global(.dark) .form__title {
+    @apply text-white;
+}
+
+.form__item {
+    @apply p-3 bg-white rounded-md box-border w-full;
+}
+
+.form__item:focus {
+    @apply outline-primary-500 outline-1;
+}

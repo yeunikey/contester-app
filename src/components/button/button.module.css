@@ -1,0 +1,15 @@
+.button {
+    @apply py-2 px-8 bg-primary-500 rounded-md flex justify-center gap-2 items-center cursor-pointer;
+}
+
+.button * {
+    @apply pointer-events-none select-none;
+}
+
+.button__icon {
+    @apply w-4;
+}
+
+.button__text {
+    @apply text-white font-medium font-[16px];
+}

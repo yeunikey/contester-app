@@ -1,0 +1,40 @@
+
+.navigation {
+    @apply mb-8;
+}
+
+.title {
+    @apply font-semibold text-[32px] mb-2;
+}
+
+:global(.dark) .title {
+    @apply text-white;
+}
+
+.content {
+    @apply bg-white rounded-md px-8 flex flex-row gap-8;
+}
+
+:global(.dark) .content {
+    @apply bg-dark-background-2;
+}
+
+.link {
+    @apply 
+    relative py-4 text-[16px] text-secondary-400 hover:text-secondary-500 cursor-pointer
+    before:content-[''] before:hidden before:absolute before:w-full before:h-[3px] before:bg-secondary-500/25 before:bottom-0 before:rounded-md
+    hover:before:block;
+}
+
+:global(.dark) .link {
+    @apply text-[#999] hover:text-white;
+}
+
+.link__selected {
+    @apply relative text-secondary-500
+    before:content-[''] before:block before:absolute before:w-full before:h-[3px] before:bg-primary-500 before:bottom-0 before:rounded-md;
+}
+
+:global(.dark) .link__selected {
+    @apply text-white;
+}

@@ -1,0 +1,74 @@
+
+.footer {
+    @apply bg-white;
+}
+
+:global(.dark) .footer {
+    @apply bg-dark-background-2;
+}
+
+.content {
+    @apply py-8 sm:pb-16 grid grid-cols-1 md:grid-cols-2 gap-8;
+}
+
+/* Company */
+
+.company {
+    @apply flex items-center gap-2 cursor-pointer;
+}
+
+.company * {
+    @apply pointer-events-none select-none;
+}
+
+.company__logo {
+    @apply h-12 w-auto;
+}
+
+.company__name {
+    @apply text-lg font-bold text-secondary-500;
+}
+
+:global(.dark) .company__name {
+    @apply text-white;
+}
+
+.company__lore {
+    @apply pt-4 text-[16px] text-secondary-500;
+}
+
+:global(.dark) .company__lore {
+    @apply text-[#999];
+}
+
+.company__lore br {
+    @apply hidden sm:block;
+}
+
+/* Side */
+
+.side:last-child {
+    @apply flex md:justify-end;
+}
+
+/* Links */
+
+.links {
+    @apply flex flex-col w-48;
+}
+
+.links__title {
+    @apply text-[20px] font-semibold mb-6;
+}
+
+:global(.dark) .links__title {
+    @apply text-white;
+}
+
+.links__item {
+    @apply cursor-pointer text-[16px] text-secondary-400 hover:text-secondary-500;
+}
+
+:global(.dark) .links__item {
+    @apply text-[#999] hover:text-white;
+}

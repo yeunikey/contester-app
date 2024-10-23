@@ -1,0 +1,17 @@
+/* Burger */
+
+.burger {
+    @apply block sm:hidden relative;
+}
+
+.button {
+    @apply p-2 bg-primary-500 rounded-md cursor-pointer;
+}
+
+.icon {
+    @apply w-6 h-6;
+}
+
+.icon path {
+    @apply stroke-white;
+}

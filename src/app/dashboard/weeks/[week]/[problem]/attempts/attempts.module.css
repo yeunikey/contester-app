@@ -1,0 +1,56 @@
+
+.attempts {
+    @apply my-6;
+}
+
+.attempts__title {
+    @apply font-semibold text-secondary-500 text-[32px];
+}
+
+:global(.dark) .attempts__title {
+    @apply text-white;
+}
+
+.attempts__content {
+    @apply my-2 flex flex-col gap-2;
+}
+
+.attempt {
+    @apply bg-white rounded-md;
+}
+
+:global(.dark) .attempt {
+    @apply bg-dark-background-2;
+}
+
+.attempt__upper {
+    @apply cursor-pointer py-3 px-8;
+}
+
+:global(.dark) .attempt__upper {
+    @apply text-white;
+}
+
+.attempt__upper__show {
+    @apply bg-primary-500 rounded-md text-white;
+}
+
+.attempt__content {
+    @apply px-8 py-3;
+}
+
+.attempt__title {
+    @apply text-[20px] text-secondary-500 font-semibold mb-2;
+}
+
+:global(.dark) .attempt__title {
+    @apply text-white;
+}
+
+.attempt__code {
+    @apply bg-background w-full h-64;
+}
+
+:global(.dark) .attempt__code {
+    @apply bg-dark-background;
+}

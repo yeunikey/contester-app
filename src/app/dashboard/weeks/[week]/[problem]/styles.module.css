@@ -1,0 +1,38 @@
+
+.content {
+    @apply flex flex-row gap-8 
+    flex-wrap md:flex-nowrap;
+}
+
+.problems {
+    @apply flex-grow flex flex-col gap-2;
+}
+
+.actions {
+    @apply h-fit basis-full md:basis-64 md:min-w-64 flex flex-col gap-8;
+}
+
+.week {
+    @apply bg-primary-500 rounded-md p-6 cursor-pointer flex flex-col gap-1
+    relative overflow-hidden;
+}
+
+.week__green {
+    @apply bg-green-700;
+}
+
+.week__red {
+    @apply bg-red-600;
+}
+
+.week__title {
+    @apply text-white text-[24px] font-semibold;
+}
+
+.week__deadline {
+    @apply text-white/75 font-medium;
+}
+
+.week__completed {
+    @apply absolute bottom-[-20px] right-0 font-black text-white/25 text-[50px] select-none;
+}

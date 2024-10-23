@@ -1,0 +1,80 @@
+
+.header {
+    @apply bg-white py-4;
+}
+
+:global(.dark) .header {
+    @apply !bg-dark-background-2;
+}
+
+.content {
+    @apply grid grid-cols-2 items-center;
+}
+
+/* Side */
+
+.side {
+    @apply flex items-center;
+}
+
+.side:first-child {
+    @apply gap-16;
+}
+
+.side:last-child {
+    @apply flex justify-end gap-8;
+}
+
+/* Company */
+
+.company {
+    @apply flex items-center gap-2 cursor-pointer;
+}
+
+.company * {
+    @apply pointer-events-none select-none;
+}
+
+.company__logo {
+    @apply h-12 w-auto;
+}
+
+.company__name {
+    @apply text-lg font-bold text-secondary-500;
+}
+
+:global(.dark) .company__name {
+    @apply text-white;
+}
+
+/* Links */
+
+.links {
+    @apply hidden sm:flex items-center gap-6;
+}
+
+.link {
+    @apply text-[16px] cursor-pointer text-secondary-300 hover:text-secondary-400;
+}
+
+:global(.dark) .link {
+    @apply text-[#999] hover:text-white;
+}
+
+/* Actions */
+
+.theme {
+    @apply hidden sm:block p-2 rounded-full border-solid border-secondary-200 border-[1px] cursor-pointer;
+}
+
+:global(.dark) .theme {
+    @apply border-secondary-200/25;
+}
+
+.theme__icon {
+    @apply w-4;
+}
+
+.button {
+    @apply !hidden sm:!flex;
+}

@@ -1,0 +1,88 @@
+
+.title {
+    @apply text-[32px] font-semibold text-secondary-500 mb-2;
+}
+
+:global(.dark) .title {
+    @apply text-white;
+}
+
+.limits {
+    @apply flex flex-row gap-8;
+}
+
+.limit {
+    @apply flex gap-4;
+}
+
+:global(.dark) .limit {
+    @apply text-[#999];
+}
+
+.limit__value {
+    @apply font-semibold;
+}
+
+:global(.dark) .limit__value {
+    @apply text-white/75;
+}
+
+.contents {
+    @apply my-6;
+}
+
+:global(.dark) .lore {
+    @apply text-white;
+}
+
+.tests {
+    @apply my-6;
+}
+
+.tests__title {
+    @apply text-[24px] font-semibold mb-2;
+}
+
+:global(.dark) .tests__title {
+    @apply text-white;
+}
+
+.tests__content {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-2;
+}
+
+.test {
+    @apply bg-white rounded-md p-4 relative overflow-hidden;
+}
+
+:global(.dark) .test {
+    @apply bg-dark-background-2;
+}
+
+.test__decorate {
+    @apply absolute -bottom-2 right-0 font-black text-secondary-500/15 text-[32px] select-none;
+}
+
+:global(.dark) .test__decorate {
+    @apply text-white/15;
+}
+
+.test__title {
+    @apply grid grid-cols-2 mb-2 text-[16px] font-semibold;
+}
+
+:global(.dark) .test__title {
+    @apply text-white;
+}
+
+.test__content {
+    @apply grid grid-cols-2;
+}
+
+.test__item {
+    word-spacing: 8px;
+}
+
+:global(.dark) .test__item {
+    @apply text-white/75;
+}

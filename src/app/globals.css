@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply m-0;
+}
+
+.App {
+  @apply bg-background dark:bg-dark-background flex flex-col min-h-screen gap-8;
+}
+
+.container {
+  @apply max-w-[85vw] mx-auto;
+}

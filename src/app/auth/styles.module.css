@@ -1,0 +1,72 @@
+
+.auth {
+    @apply w-[100%] min-h-[70vh] flex justify-center;
+}
+
+.content {
+    @apply my-auto;
+}
+
+.module {
+    @apply bg-white px-6 py-12 rounded-xl w-[352px] md:w-[384px] h-fit;
+}
+
+:global(.dark) .module {
+    @apply bg-dark-background-2;
+}
+
+.title {
+    @apply flex justify-center font-bold text-secondary-500 text-[32px];
+}
+
+:global(.dark) .title {
+    @apply text-white;
+}
+
+.subtitle {
+    @apply flex justify-center font-medium text-secondary-300 text-[16px];
+}
+
+:global(.dark) .subtitle {
+    @apply text-[#999];
+}
+
+.button {
+    @apply flex justify-center;
+}
+
+.forms {
+    @apply my-12 flex flex-col gap-4;
+}
+
+.forms__row {
+    @apply flex gap-4;
+}
+
+.form {
+    @apply flex flex-col gap-2 w-full;
+}
+
+.form__title {
+    @apply text-secondary-500 font-semibold text-[16px];
+}
+
+:global(.dark) .form__title {
+    @apply text-white;
+}
+
+.form__item {
+    @apply py-2 px-4 bg-background rounded-md box-border w-full;
+}
+
+.form__item::placeholder {
+    @apply text-[#999];
+}
+
+:global(.dark) .form__item {
+    @apply bg-dark-background text-white;
+}
+
+.form__item:focus {
+    @apply outline-none outline-primary-500;
+}

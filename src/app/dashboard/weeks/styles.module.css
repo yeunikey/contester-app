@@ -1,0 +1,44 @@
+
+.content {
+    @apply flex flex-col gap-4;
+}
+
+.title {
+    @apply font-semibold text-[24px] text-secondary-500;
+}
+
+:global(.dark) .title {
+    @apply text-white;
+}
+
+.list {
+    @apply grid gap-2
+    grid-cols-2
+    sm:grid-cols-3
+    md:grid-cols-5;
+}
+
+.week {
+    @apply bg-primary-500 rounded-md p-6 cursor-pointer flex flex-col gap-1
+    relative overflow-hidden;
+}
+
+.week__green {
+    @apply bg-green-700;
+}
+
+.week__red {
+    @apply bg-red-600;
+}
+
+.week__title {
+    @apply text-white text-[24px] font-semibold;
+}
+
+.week__deadline {
+    @apply text-white/75 font-medium;
+}
+
+.week__completed {
+    @apply absolute bottom-[-20px] right-0 font-black text-white/25 text-[50px] select-none text-nowrap;
+}
