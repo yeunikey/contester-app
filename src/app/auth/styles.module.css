@@ -70,3 +70,23 @@
 .form__item:focus {
     @apply outline-none outline-primary-500;
 }
+
+.select {
+    @apply py-2 px-3 box-border w-full rounded-md text-[16px] bg-background;
+}
+
+.select:focus {
+    @apply outline-none outline-primary-500;
+}
+
+.select option:hover {
+    @apply bg-primary-500;
+}
+
+.select option:checked {
+    @apply bg-primary-500 text-white rounded-md;
+}
+
+.select__dark {
+    @apply bg-dark-background text-white;
+}

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import logo from '../../_assets/logo.png';
 import Container from '../container/container';
 import s from './footer.module.css';
+import { useNavigation } from '@/core/store/navigation';
 
 function Footer() {
     return (
@@ -37,7 +38,7 @@ function Links() {
                     General
                 </div>
                 <div className={s.links__items}>
-                    <Item text='Weeks' href='/dashboard/weeks'></Item>
+                    <Item text='Weeks' href='/dashboard/weeks' id='weeks'></Item>
                 </div>
             </div>
             <div className={s.links}>
@@ -45,16 +46,17 @@ function Links() {
                     Account
                 </div>
                 <div className={s.links__items}>
-                    <Item text='Settings' href='/dashboard/settings'></Item>
+                    <Item text='Settings' href='/dashboard/settings' id={'settings'}></Item>
                 </div>
             </div>
         </>
     )
 }
 
-function Item({text, href}: {text: string, href: string}) {
+function Item({text, id, href}: {text: string, id: string, href: string}) {
+    let navigation = useNavigation((state) => state.actions);
     return (
-        <Link className={s.links__item} href={href}>{text}</Link>
+        <Link className={s.links__item} href={href} onClick={() => navigation.setPage(id)}>{text}</Link>
     )
 }
 

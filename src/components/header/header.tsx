@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { pages } from '@/core/constants/pages';
-import { useTheme } from '@/core/store/theme';
+import { storedTheme, useTheme } from '@/core/store/theme';
 
 import LoginIcon from '../../_assets/icons/login.svg';
 import ThemeIcon from '../../_assets/icons/theme.svg';
@@ -15,6 +15,7 @@ import Button from '../button/Button';
 import Container from '../container/container';
 import Burger from './burger/burger';
 import s from './header.module.css';
+import { useNavigation } from '@/core/store/navigation';
 
 function Header() {
     return (
@@ -59,15 +60,18 @@ function Links() {
     return (
         <div className={s.links}>
             {pages.map((page, i) => {
-                return (<LinkItem key={i} text={page.page} href={page.href} />)
+                return (<LinkItem key={i} id={page.key} text={page.page} href={page.href} />)
             })}
         </div>
     )
 }
 
-function LinkItem({ text, href }: { text: string, href: string }) {
+function LinkItem({ text, href, id }: { text: string, id: string, href: string }) {
+    
+    let navigation = useNavigation((state) => state.actions);
+
     return (
-        <Link className={s.link} href={href}>
+        <Link className={s.link} href={href} onClick={() => navigation.setPage(id)}>
             {text}
         </Link>
     )
@@ -75,18 +79,8 @@ function LinkItem({ text, href }: { text: string, href: string }) {
 
 function Action() {
 
-    const [darkMode, setDarkMode] = useState(() => {
-        if (typeof window !== 'undefined') {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-                return true;
-            } else {
-                document.documentElement.classList.remove('dark');
-                return false;
-            }
-        }
-    });
+    const [darkMode, setDarkMode] = useState(() => storedTheme());
+
     let dispatch = useTheme((state) => state.dispatch)
 
     const toggleDark = () => {

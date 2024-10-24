@@ -13,7 +13,7 @@ import s from './navigation.module.css';
 function Navigation() {
 
     let currentPage = useNavigation((state) => state.currentPage);
-    let dispatch = useNavigation((state) => state.dispatch);
+    let dispatch = useNavigation((state) => state.actions);
 
     useEffect(() => {
 

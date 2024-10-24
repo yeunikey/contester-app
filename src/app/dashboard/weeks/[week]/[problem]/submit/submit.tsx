@@ -9,70 +9,9 @@ import { cn } from '@/core/utils';
 
 import s from './submit.module.css';
 
-export const selectTheme: ThemeConfig = (theme) => ({
-    ...theme,
-    borderRadius: 5,
-    colors: {
-        ...theme.colors,
-        primary25: '#FFFFFF',
-        primary: '#3563E9',
-        neutral0: "#FFFFFF",
-        primary50: "#FFFFFF"
-    },
-});
-
-export const selectStyles: StylesConfig = {
-    control: (provided) => ({
-        ...provided,
-        backgroundColor: "#FFFFFF",
-        border: "none",
-        padding: "6px",
-        fontSize: "14px"
-    })
-};
-
-const darkSelectTheme: ThemeConfig = (theme) => ({
-    ...theme,
-    borderRadius: 5,
-    colors: {
-        ...theme.colors,
-        primary25: '#363636',
-        primary: '#3563E9',
-        neutral0: "#363636",
-        primary50: "#363636",
-    },
-});
-
-const darkSelectStyles: StylesConfig = {
-    control: (provided) => ({
-        ...provided,
-        backgroundColor: "#363636",
-        border: "none",
-        padding: "6px",
-        fontSize: "14px",
-        color: "#FFF"
-    }),
-    input: (styles) => ({
-        ...styles,
-        color: "#FFF"
-    }),
-    placeholder: (styles) => ({
-        ...styles,
-        color: "#999"
-    }),
-    singleValue: (styles) => ({
-        ...styles,
-        color: "#FFF"
-    }),
-    option: (styles, state) => ({
-        ...styles,
-        color: "#FFF"
-    })
-};
-
 function Submit() {
 
-    let theme = useTheme((state) => state.currentTheme);
+    let darkMode = useTheme((state) => state.currentTheme);
 
     return (
         <div className={s.submit}>
@@ -81,24 +20,20 @@ function Submit() {
             </div>
             <div className={s.submit__box}></div>
             <Form
-                    className={s.submit__form}
-                    title='Select language'
-                    input={
-                        <Select
-                            options={[
-                                { value: "C++", label: "python" }
-                            ]}
-                            placeholder="Language"
-
-                            theme={theme ? darkSelectTheme : selectTheme}
-                            styles={theme ? darkSelectStyles : selectStyles}
-                        ></Select>
-                    }
-                ></Form>
-                <Button
-                    text='Submit'
-                    className={s.submit__button}
-                ></Button>
+                className={s.submit__form}
+                title='Select language'
+                input={
+                    <select id={'select-2'} className={cn(s.select, darkMode ? s.select__dark : '')} name={"Language"}>
+                        <option>C++</option>
+                        <option>python</option>
+                        <option>Java</option>
+                    </select>
+                }
+            ></Form>
+            <Button
+                text='Submit'
+                className={s.submit__button}
+            ></Button>
         </div>
     );
 }

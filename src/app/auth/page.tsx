@@ -4,13 +4,11 @@ import { useEffect, useState } from 'react';
 import Select, { OptionsOrGroups, StylesConfig, ThemeConfig } from 'react-select';
 
 import Button from '@/components/button/Button';
-import {
-    darkSelectStyles, darkSelectTheme, selectStyles, selectTheme
-} from '@/core/constants/select';
 import { cn } from '@/core/utils';
 
 import LoginIcon from '../../_assets/icons/login.svg';
 import s from './styles.module.css';
+import { useTheme } from '@/core/store/theme';
 
 function Auth() {
     return (
@@ -46,18 +44,7 @@ function Auth() {
 
 function Forms() {
 
-    const [darkMode, setDarkMode] = useState(() => {
-        if (typeof window !== 'undefined') {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-                return true;
-            } else {
-                document.documentElement.classList.remove('dark');
-                return false;
-            }
-        }
-    });
+    let darkMode = useTheme((state) => state.currentTheme);
 
     return (
         <div className={s.forms}>
@@ -67,31 +54,24 @@ function Forms() {
                     title='Group'
                     className={'basis-[192px]'}
                     input={
-                        <Select
-                            options={[
-                                { value: "test", label: "SE-2402" },
-                                { value: "test2", label: "SE-2403" },
-                            ]}
-                            placeholder="Group"
-
-                            theme={darkMode ? darkSelectTheme : selectTheme}
-                            styles={darkMode ? darkSelectStyles : selectStyles}
-                        ></Select>
+                        <select id={'select-1'} className={cn(s.select, darkMode ? s.select__dark : '')} name={"Group"}>
+                            <option>SE-2401</option>
+                            <option>SE-2402</option>
+                            <option>SE-2403</option>
+                            <option>SE-2404</option>
+                            <option>SE-2405</option>
+                            <option>SE-2406</option>
+                        </select>
                     }
                 ></Form>
                 <Form
                     title='Fullname'
                     input={
-                        <Select
-                            className={s.select}
-                            options={[
-                                { value: "test", label: "Yerassyl Unerbek" }
-                            ]}
-                            placeholder="Fullname"
-
-                            theme={darkMode ? darkSelectTheme : selectTheme}
-                            styles={darkMode ? darkSelectStyles : selectStyles}
-                        ></Select>
+                        <select id={'select-2'} className={cn(s.select, darkMode ? s.select__dark : '')} name={"Fullname"}>
+                            <option>Yerassyl Unerbek</option>
+                            <option>Nursultan Nazarbaev</option>
+                            <option>Bishimai Bekarys</option>
+                        </select>
                     }
                 ></Form>
             </Row>

@@ -10,22 +10,12 @@ import CloseIcon from '../../../_assets/icons/close.svg';
 import LoginIcon from '../../../_assets/icons/login.svg';
 import ThemeIcon from '../../../_assets/icons/theme.svg';
 import s from './sidebar.module.css';
-import { useTheme } from '@/core/store/theme';
+import { storedTheme, useTheme } from '@/core/store/theme';
+import { useNavigation } from '@/core/store/navigation';
 
 function Sidebar({ toggle }: { toggle: any }) {
     
-    const [darkMode, setDarkMode] = useState(() => {
-        if (typeof window !== 'undefined') {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-                return true;
-            } else {
-                document.documentElement.classList.remove('dark');
-                return false;
-            }
-        }
-    });
+    const [darkMode, setDarkMode] = useState(() => storedTheme());
     let dispatch = useTheme((state) => state.dispatch)
 
     const toggleDark = () => {
@@ -95,10 +85,12 @@ function Sidebar({ toggle }: { toggle: any }) {
 function Item({ text, href }: { text: string, href?: string }) {
 
     let router = useRouter();
+    let navigation = useNavigation((state) => state.actions)
 
     const push = () => {
         if (!href) return;
         router.push(href);
+        navigation.setPage(href);
     }
 
     return (

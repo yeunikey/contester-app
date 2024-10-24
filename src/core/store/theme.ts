@@ -15,3 +15,17 @@ export let useTheme = create<ThemeState>((set) => ({
         }))
     }
 }))
+
+export let storedTheme = () => {
+    if (typeof window !== 'undefined') {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+            return true;
+        } else {
+            document.documentElement.classList.remove('dark');
+            return false;
+        }
+    }
+    return false;
+}

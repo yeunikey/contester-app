@@ -34,3 +34,23 @@
 .form__item:focus {
     @apply outline-primary-500 outline-1;
 }
+
+.select {
+    @apply py-2 px-4 box-border w-full rounded-md text-[16px] bg-white;
+}
+
+.select:focus {
+    @apply outline-none outline-primary-500;
+}
+
+.select option:hover {
+    @apply bg-primary-500;
+}
+
+.select option:checked {
+    @apply bg-primary-500 text-white rounded-md;
+}
+
+.select__dark {
+    @apply bg-dark-background-2 text-white;
+}
