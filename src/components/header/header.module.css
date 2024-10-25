@@ -78,3 +78,12 @@
 .button {
     @apply !hidden sm:!flex;
 }
+
+.logged {
+    @apply bg-background py-2 px-4 rounded-md text-[18px] font-semibold cursor-pointer
+    !hidden sm:!block;
+}
+
+:global(.dark) .logged {
+    @apply bg-dark-background text-white;
+}

@@ -69,8 +69,11 @@ function Side({ children }: { children: any }) {
 }
 
 function Company() {
+
+    let navigation = useNavigation();
+
     return (
-        <Link className={s.company} href={'/'}>
+        <Link className={s.company} href={'/'} onClick={() => navigation.actions.setPage('weeks')}>
             <Image className={s.company__logo} src={logo} alt='logo'></Image>
             <div className={s.company__name}>
                 CONTESTER

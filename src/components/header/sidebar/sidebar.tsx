@@ -12,11 +12,15 @@ import ThemeIcon from '../../../_assets/icons/theme.svg';
 import s from './sidebar.module.css';
 import { storedTheme, useTheme } from '@/core/store/theme';
 import { useNavigation } from '@/core/store/navigation';
+import { useAuth } from '@/core/store/auth';
+import Link from 'next/link';
 
 function Sidebar({ toggle }: { toggle: any }) {
-    
+
     const [darkMode, setDarkMode] = useState(() => storedTheme());
     let dispatch = useTheme((state) => state.dispatch)
+    let auth = useAuth();
+    let navigation = useNavigation();
 
     const toggleDark = () => {
         if (typeof window !== 'undefined') {
@@ -24,7 +28,7 @@ function Sidebar({ toggle }: { toggle: any }) {
             setDarkMode(isDark);
             dispatch.changeTheme(isDark)
             let themeColorMeta = document.querySelector('meta[name="theme-color"]');
-            
+
             if (isDark) {
                 document.documentElement.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
@@ -70,11 +74,18 @@ function Sidebar({ toggle }: { toggle: any }) {
                     <div className={s.theme} onClick={toggleDark}>
                         <ThemeIcon className={s.theme__icon} alt='theme'></ThemeIcon>
                     </div>
-                    <Button text='Login'
-                        className={s.button}
-                        icon={<LoginIcon alt='login'></LoginIcon>}
-                        href='/auth'
-                    ></Button>
+                    
+                    {auth.authentificated && (
+                        <Link href={'/dashboard/settings'} className={s.logged} onClick={() => navigation.actions.setPage('settings')}>{auth.user?.profile.name + " " + auth.user?.profile.surname}</Link>
+                    )}
+
+                    {!auth.authentificated && (
+                        <Button text='Login'
+                            className={s.button}
+                            icon={<LoginIcon alt='login'></LoginIcon>}
+                            href='/auth'
+                        ></Button>
+                    )}
                 </div>
             </div>
 

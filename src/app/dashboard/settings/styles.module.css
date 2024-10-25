@@ -62,3 +62,11 @@
 .form__button {
     @apply mt-4;
 }
+
+.formclass {
+    @apply my-2 flex flex-col gap-2 w-full;
+}
+
+.exit {
+    @apply !bg-red-500;
+}

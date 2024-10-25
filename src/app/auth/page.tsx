@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Select, { OptionsOrGroups, StylesConfig, ThemeConfig } from 'react-select';
 
 import Button from '@/components/button/Button';
@@ -9,8 +9,15 @@ import { cn } from '@/core/utils';
 import LoginIcon from '../../_assets/icons/login.svg';
 import s from './styles.module.css';
 import { useTheme } from '@/core/store/theme';
+import { xiorInstance } from '@/api/instance';
+import { log } from 'console';
+import xior from 'xior';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { useNotification } from '@/core/store/notification';
 
 function Auth() {
+
     return (
         <div className="container">
 
@@ -27,13 +34,6 @@ function Auth() {
 
                         <Forms></Forms>
 
-                        <div className={s.button}>
-                            <Button
-                                text='Login'
-                                icon={<LoginIcon></LoginIcon>}
-                            ></Button>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -45,46 +45,136 @@ function Auth() {
 function Forms() {
 
     let darkMode = useTheme((state) => state.currentTheme);
+    let notification = useNotification();
+
+    let [groups, setGroups] = useState<string[]>([]);
+    let groupRef = useRef<HTMLSelectElement>(null);
+
+    let [students, setStudents] = useState<
+        {
+            uniqueId: string,
+            name: string,
+            surname: string
+        }[]
+    >([])
+    let studentRef = useRef<HTMLSelectElement>(null);
+
+    let passwordRef = useRef<HTMLInputElement>(null);
+
+    const fetchGroups = async () => {
+        await xiorInstance.get('/auth/groups')
+            .then((response) => {
+                setGroups(response.data.data)
+            });
+    }
+
+    const fetchStudents = async () => {
+        await xiorInstance.get('/auth/students',
+            {
+                params: {
+                    group: groupRef.current?.value
+                }
+            }
+        ).then((response) => {
+            setStudents(response.data.data)
+        })
+    }
+
+    const onGroupChange = () => {
+        fetchStudents()
+    }
+
+    useEffect(() => {
+        fetchGroups();
+    }, [])
+
+    useEffect(() => {
+
+        if (groups.length == 0) return;
+        if (!groupRef.current) return;
+
+        groupRef.current.value = groups[0];
+        fetchStudents();
+
+    }, [groups])
+
+    const login = async () => {
+
+        if (passwordRef.current?.value == '' 
+            || studentRef.current?.value == '' 
+            || groupRef.current?.value == '') {
+                notification.actions.setNotification({
+                    type: 'red',
+                    content: "Not all fields are filled in"
+                });
+                return
+            }
+
+        await xiorInstance.post('/auth/login', {
+                "uniqueId": studentRef.current?.value,
+                "password": passwordRef.current?.value
+            }).then(async (response) => {
+
+                if (response.data.status == 'ERROR') {
+                    notification.actions.setNotification({
+                        type: 'red',
+                        content: "Incorrect password"
+                    });
+                    return;
+                }
+
+                Cookies.set('token', response.data.data.token);
+                window.location.href = '/';
+            })
+    }
 
     return (
-        <div className={s.forms}>
+        <>
+            <div className={s.forms}>
 
-            <Row>
-                <Form
-                    title='Group'
-                    className={'basis-[192px]'}
-                    input={
-                        <select id={'select-1'} className={cn(s.select, darkMode ? s.select__dark : '')} name={"Group"}>
-                            <option>SE-2401</option>
-                            <option>SE-2402</option>
-                            <option>SE-2403</option>
-                            <option>SE-2404</option>
-                            <option>SE-2405</option>
-                            <option>SE-2406</option>
-                        </select>
-                    }
-                ></Form>
-                <Form
-                    title='Fullname'
-                    input={
-                        <select id={'select-2'} className={cn(s.select, darkMode ? s.select__dark : '')} name={"Fullname"}>
-                            <option>Yerassyl Unerbek</option>
-                            <option>Nursultan Nazarbaev</option>
-                            <option>Bishimai Bekarys</option>
-                        </select>
-                    }
-                ></Form>
-            </Row>
-            <Row>
-                <Form
-                    title='Password'
-                    input={
-                        <input className={s.form__item} type='password' placeholder='Your password' />
-                    }
-                ></Form>
-            </Row>
+                <Row>
+                    <Form
+                        title='Group'
+                        className={'basis-[192px]'}
+                        input={
+                            <select ref={groupRef} onChange={onGroupChange} className={cn(s.select, darkMode ? s.select__dark : '')} name={"Group"}>
+                                {groups.map((group, i) => {
+                                    return <option key={i} value={group}>{group}</option>
+                                })}
+                            </select>
+                        }
+                    ></Form>
+                    <Form
+                        title='Fullname'
+                        input={
+                            <select ref={studentRef} className={cn(s.select, darkMode ? s.select__dark : '')} name={"Fullname"}>
+                                {students.map((student, i) => {
+                                    return <option key={i} value={student.uniqueId}>{student.name + ' ' + student.surname}</option>
+                                })}
+                            </select>
+                        }
+                    ></Form>
+                </Row>
+                <Row>
+                    <form className={s.formclass}>
+                        <Form
+                            title='Password'
+                            input={
+                                <input ref={passwordRef} className={s.form__item} type='password' placeholder='Your password' />
+                            }
+                        ></Form>
+                    </form>
+                </Row>
 
-        </div>
+            </div>
+            <div className={s.button}>
+                <Button
+                    text='Login'
+                    icon={<LoginIcon></LoginIcon>}
+                    action={login}
+                ></Button>
+            </div>
+        </>
     )
 }
 

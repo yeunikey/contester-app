@@ -1,0 +1,28 @@
+
+.loading {
+    @apply w-full min-h-[70vh] flex items-center justify-center;
+}
+
+:global(.dark) .loading svg path {
+    @apply stroke-white;
+}
+
+.loading svg {
+    animation-name: rotate;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+
+    @apply w-12 h-12 fill-none stroke-secondary-500;
+}
+
+@keyframes rotate {
+    0% {
+        rotate: 0deg;
+    }
+    50% {
+        rotate: 360deg;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}

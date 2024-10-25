@@ -90,3 +90,7 @@
 .select__dark {
     @apply bg-dark-background text-white;
 }
+
+.formclass {
+    @apply w-full;
+}

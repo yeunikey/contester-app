@@ -7,6 +7,7 @@ import localFont from 'next/font/local';
 import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
 import { cn } from '@/core/utils';
+import Notification from "@/components/notification/notification";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin']
@@ -46,7 +47,11 @@ export default function RootLayout({
         <div className="App">
           <Header></Header>
 
-          <div className={cn("flex-grow", 'min-h-[70vh]', jakarta.className)}>{children}</div>
+          <div className={cn("flex-grow", 'min-h-[70vh]', 'relative', jakarta.className)}>
+            <Notification></Notification>
+
+            {children}
+          </div>
 
           <Footer></Footer>
         </div>

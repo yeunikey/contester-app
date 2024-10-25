@@ -67,3 +67,11 @@
 .theme__icon {
     @apply w-4;
 }
+
+.logged {
+    @apply bg-background py-2 px-4 rounded-md text-[18px] font-semibold cursor-pointer;
+}
+
+:global(.dark) .logged {
+    @apply bg-dark-background text-white;
+}

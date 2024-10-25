@@ -17,3 +17,21 @@ export interface ILimits {
     timeLimit: number,
     memoryLimit: number
 }
+
+export interface IUser {
+    uniqueId: string,
+    type: string,
+    profile: IStudent | ITeacher,
+}
+
+export interface IStudent {
+    name: string,
+    surname: string,
+    group: string,
+    teacher: string
+}
+
+export interface ITeacher {
+    name: string,
+    surname: string
+}

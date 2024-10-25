@@ -16,6 +16,8 @@ import Container from '../container/container';
 import Burger from './burger/burger';
 import s from './header.module.css';
 import { useNavigation } from '@/core/store/navigation';
+import { useAuth } from '@/core/store/auth';
+import { IStudent } from '@/core/entities';
 
 function Header() {
     return (
@@ -46,8 +48,11 @@ function Side({ children }: { children: any }) {
 /* First side */
 
 function Company() {
+
+    let navigation = useNavigation();
+
     return (
-        <Link className={s.company} href={'/'}>
+        <Link className={s.company} href={'/'} onClick={() => navigation.actions.setPage('weeks')}>
             <Image className={s.company__logo} src={logo} alt='logo'></Image>
             <div className={s.company__name}>
                 CONTESTER
@@ -67,7 +72,7 @@ function Links() {
 }
 
 function LinkItem({ text, href, id }: { text: string, id: string, href: string }) {
-    
+
     let navigation = useNavigation((state) => state.actions);
 
     return (
@@ -81,7 +86,10 @@ function Action() {
 
     const [darkMode, setDarkMode] = useState(() => storedTheme());
 
+    let auth = useAuth();
     let dispatch = useTheme((state) => state.dispatch)
+
+    let navigation = useNavigation();
 
     const toggleDark = () => {
         if (typeof window !== 'undefined') {
@@ -111,11 +119,18 @@ function Action() {
             <div className={s.theme} onClick={toggleDark}>
                 <ThemeIcon className={s.theme__icon} alt='theme'></ThemeIcon>
             </div>
-            <Button text='Login'
-                className={s.button}
-                icon={<LoginIcon alt='login'></LoginIcon>}
-                href='/auth'
-            ></Button>
+
+            {auth.authentificated && (
+                <Link href={'/dashboard/settings'} className={s.logged} onClick={() => navigation.actions.setPage('settings')}>{auth.user?.profile.name + " " + auth.user?.profile.surname}</Link>
+            )}
+
+            {!auth.authentificated && (
+                <Button text='Login'
+                    className={s.button}
+                    icon={<LoginIcon alt='login'></LoginIcon>}
+                    href='/auth'
+                ></Button>
+            )}
         </>
     )
 }

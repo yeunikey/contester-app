@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { storedTheme, useTheme } from '@/core/store/theme';
 
 import Navigation from './navigation/navigation';
+import AuthProvider from '@/components/auth/auth';
 
 export default function Layout({ children }: { children: any }) {
 
@@ -20,10 +21,10 @@ export default function Layout({ children }: { children: any }) {
   }, [])
 
   return (
-    <>
+    <AuthProvider>
       <Navigation></Navigation>
 
       {children}
-    </>
+    </AuthProvider>
   );
 }

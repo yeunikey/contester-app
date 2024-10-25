@@ -1,5 +1,6 @@
 'use client'
 
+import Notification from "@/components/notification/notification";
 import { storedTheme, useTheme } from "@/core/store/theme";
 import { useEffect } from "react";
 
@@ -16,6 +17,9 @@ export default function Layout({ children }: { children: any }) {
     }, [])
 
     return (
-        <>{children}</>
+        <div className="relative">
+            <Notification></Notification>
+            {children}
+        </div>
     );
 }
