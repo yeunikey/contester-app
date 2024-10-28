@@ -72,3 +72,27 @@
 :global(.dark) .problem__number {
     @apply text-white/15;
 }
+
+.notfound {
+    @apply flex flex-col gap-4 items-center justify-center w-full min-h-[50vh];
+}
+
+.notfound__text {
+    @apply text-secondary-500 font-semibold text-[32px];
+}
+
+:global(.dark) .notfound__text {
+    @apply text-white;
+}
+
+.admin {
+    @apply flex flex-col gap-2;
+}
+
+.createproblem {
+    @apply !bg-green-700;
+}
+
+.removeweek {
+    @apply !bg-red-600;
+}

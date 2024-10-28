@@ -4,9 +4,8 @@ import { useEffect } from "react";
 import Cookies from 'js-cookie';
 import { IUser } from "@/core/entities";
 
-import LoadingIcon from './../../_assets/icons/loading.svg';
-
 import s from './auth.module.css';
+import Loading from "../loading/loading";
 
 function AuthProvider({children}: {children: any}) {
     
@@ -28,11 +27,7 @@ function AuthProvider({children}: {children: any}) {
     }, [])
 
     if (!auth.authentificated) {
-        return <>
-            <div className={s.loading}>
-                <LoadingIcon></LoadingIcon>
-            </div>
-        </>
+        return <Loading className="min-h-[70vh]"></Loading>
     }
 
     return (<>

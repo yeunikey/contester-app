@@ -1,123 +1,187 @@
+'use client'
+
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from '@/components/button/Button';
 import Container from '@/components/container/container';
 import { IProblem, IWeek } from '@/core/entities';
 import { cn, getTimeLeft } from '@/core/utils';
 
+import { withAuthorization, xiorInstance } from '@/api/instance';
 import ExitIcon from '../../../../_assets/icons/login.svg';
 import s from './styles.module.css';
+import { useNavigation } from '@/core/store/navigation';
+import Loading from '@/components/loading/loading';
+import { useAuth } from '@/core/store/auth';
+import { useNotification } from '@/core/store/notification';
 
 function Page({ params }: { params: any }) {
 
-    let week: IWeek = {
-        id: params.week,
-        name: "Week 1",
-        deadline: new Date(),
-        problems: 15
+    let [fetching, setFetching] = useState(true);
+    let [week, setWeek] = useState<IWeek | null>(null);
+
+    const fetchData = async () => {
+        await xiorInstance.get("/week/get", {
+            params: {
+                weekId: params.week,
+                detailed: true
+            },
+            headers: withAuthorization()
+        }).then((response) => {
+            if (response.data.status == 'ERROR') {
+                setFetching(false)
+                return
+            };
+            let data = response.data.data;
+
+            const weekData: IWeek = {
+                uniqueId: data.uniqueId,
+                name: data.name,
+                closed: data.closed,
+                startDate: new Date(data.startDate),
+                deadlineDate: new Date(data.deadlineDate),
+                problems: data.problems,
+            };
+            setWeek(weekData);
+
+            console.log(weekData)
+
+            setFetching(false);
+        }).catch((err) => {
+            setFetching(false)
+        })
     }
 
-    let problems: IProblem[] = [
-        {
-            id: 'problem-1',
-            name: "Problem 1. Problem name",
-            attempts: 1,
-            week: week,
-            limits: {
-                timeLimit: 2000,
-                memoryLimit: 65000
-            }
-        },
-        {
-            id: 'problem-2',
-            name: "Problem 2. Problem name",
-            attempts: 3,
-            week: week,
-            limits: {
-                timeLimit: 2000,
-                memoryLimit: 65000
-            }
-        },
-        {
-            id: 'problem-3',
-            name: "Problem 3. Problem name",
-            attempts: 1,
-            week: week,
-            limits: {
-                timeLimit: 2000,
-                memoryLimit: 65000
-            }
-        },
-        {
-            id: 'problem-4',
-            name: "Problem 4. Problem name",
-            attempts: 5,
-            week: week,
-            limits: {
-                timeLimit: 2000,
-                memoryLimit: 65000
-            }
-        }
-    ]
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    if (fetching) {
+        return <Loading className='h-[40vh]'></Loading>;
+    }
 
     return (
         <Container
             parent={s.page}
             content={s.content}
         >
-            <div className={s.actions}>
-                <Week week={week} completed={14}></Week>
-                <Button
-                    text="Back"
-                    href="/dashboard/weeks"
-                    icon={<ExitIcon></ExitIcon>}
-                ></Button>
-            </div>
-            <div className={s.problems}>
-                <div className={s.problems__title}>
-                    Problems list
-                </div>
-                <div className={s.problems__list}>
-                    {problems.map((problem, i) => {
-                        return (<Problem key={i} problem={problem} i={i + 1} completed={false}></Problem>)
-                    })}
-                </div>
-            </div>
+
+            {!week
+                ? (<NotFound></NotFound>)
+                : (<FoundedWeek week={week}></FoundedWeek>)
+            }
+
         </Container>
     );
 }
 
+function NotFound() {
+
+    let navigation = useNavigation();
+
+    return (
+        <div className={s.notfound}>
+            <div className={s.notfound__text}>Week not found :(</div>
+
+            <Button
+                text="Back"
+                href="/dashboard/weeks"
+                action={() => navigation.actions.setPage('weeks')}
+                icon={<ExitIcon></ExitIcon>}
+            ></Button>
+        </div>
+    )
+}
+
+function FoundedWeek({ week }: { week: IWeek }) {
+
+    let auth = useAuth();
+
+    return (<>
+        <div className={s.actions}>
+            <Week week={week} completed={0}></Week>
+            <Button
+                text="Back"
+                href="/dashboard/weeks"
+                icon={<ExitIcon></ExitIcon>}
+            ></Button>
+
+            {auth.user?.role == "ADMIN" && (
+                <Admin week={week}></Admin>
+            )}
+
+        </div>
+        <div className={s.problems}>
+            <div className={s.problems__title}>
+                Problems list
+            </div>
+            <div className={s.problems__list}>
+                {week && (week?.problems as IProblem[]).map((problem, i) => {
+                    return (<Problem key={i} problem={problem} i={i + 1} completed={false}></Problem>)
+                })}
+            </div>
+        </div>
+    </>)
+}
+
+function Admin({ week }: { week: IWeek }) {
+
+    const fetchDelete = () => {
+        xiorInstance.delete('/week/delete', {
+            headers: withAuthorization(),
+            params: {
+                weekId: week.uniqueId
+            }
+        }).then((response) => {
+            window.location.href = '/';
+        })
+    }
+    
+    return (
+        <div className={s.admin}>
+            <Button
+                text='Create Problem'
+                className={s.createproblem}
+            ></Button>
+            <Button
+                text='Delete week'
+                className={s.removeweek}
+                action={fetchDelete}
+            ></Button>
+        </div>
+    )
+}
+
 function Problem({ problem, completed, i }: { problem: IProblem, completed: boolean, i: number }) {
     return (
-        <Link className={s.problem} href={`/dashboard/weeks/${problem.week.id}/${problem.id}`}>
+        <Link className={s.problem} href={`/dashboard/weeks/${problem.weekId}/${problem.uniqueId}`}>
             <div className={s.problem__number}>#{i}</div>
-            <div className={s.problem__name}>{problem.name}</div>
+            <div className={s.problem__name}>{problem.title}</div>
         </Link>
     )
 }
 
-function Week({ week, completed }: { week: IWeek, completed: number }) {
+function Week({ week, completed }: { week: IWeek | null, completed: number }) {
 
     let status = '';
 
-    if (week.problems == completed) {
+    if (week?.problems.length == completed) {
         status = s.week__green;
-    } else if (week.deadline.getTime() - new Date().getTime() <= 0) {
+    } else if (week && week.deadlineDate.getTime() - new Date().getTime() <= 0) {
         status = s.week__red;
     }
 
     return (
         <div className={cn(s.week, status)}>
             <div className={s.week__title}>
-                {week.name}
+                {week?.name}
             </div>
             <div className={s.week__deadline}>
-                {getTimeLeft(week.deadline)}
+                {week && getTimeLeft(week.deadlineDate)}
             </div>
             <div className={s.week__completed}>
-                {completed} / {week.problems}
+                {completed} / {week?.problems.length}
             </div>
         </div>
     )

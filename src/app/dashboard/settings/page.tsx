@@ -8,10 +8,11 @@ import s from './styles.module.css';
 import { useAuth } from '@/core/store/auth';
 import { IStudent } from '@/core/entities';
 import { useRef } from 'react';
-import { withAuthorization, xiorInstance } from '@/api/instance';
+import { baseUrl, withAuthorization, xiorInstance } from '@/api/instance';
 import { useNotification } from '@/core/store/notification';
 
 import Cookies from 'js-cookie';
+import xior from 'xior';
 
 function Settings() {
     return (

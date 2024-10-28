@@ -16,7 +16,7 @@
 }
 
 .attempt {
-    @apply bg-white rounded-md;
+    @apply bg-white rounded-md relative;
 }
 
 :global(.dark) .attempt {
@@ -24,11 +24,19 @@
 }
 
 .attempt__upper {
-    @apply cursor-pointer py-3 px-8;
+    @apply cursor-pointer py-3 px-8 relative overflow-hidden font-semibold rounded-md text-secondary-500;
 }
 
 :global(.dark) .attempt__upper {
     @apply text-white;
+}
+
+.attempt__accepted {
+    @apply bg-green-700/85 text-white;
+}
+
+.attempt__wrong {
+    @apply bg-red-600/85 text-white;
 }
 
 .attempt__upper__show {
@@ -48,9 +56,13 @@
 }
 
 .attempt__code {
-    @apply bg-background w-full h-64;
+    @apply bg-background w-full min-h-32 max-h-64 overflow-y-auto overscroll-contain text-secondary-500 p-4 whitespace-pre;
 }
 
 :global(.dark) .attempt__code {
-    @apply bg-dark-background;
+    @apply bg-dark-background text-white;
+}
+
+.attempt__date {
+    @apply absolute -bottom-[8px] right-0 text-white/50 text-[24px] font-black select-none;
 }

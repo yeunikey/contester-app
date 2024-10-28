@@ -11,12 +11,17 @@
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
     "@types/js-cookie": "^3.0.6",
+    "@types/prismjs": "^1.26.5",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "cookie": "^1.0.1",
     "js-cookie": "^3.0.5",
     "next": "14.2.15",
+    "next-remove-imports": "^1.0.12",
+    "prismjs": "^1.29.0",
     "react": "^18",
     "react-dom": "^18",
     "react-select": "^5.8.1",
+    "react-simple-code-editor": "^0.14.1",
     "xior": "^0.6.1",
     "zustand": "^5.0.0"
   },

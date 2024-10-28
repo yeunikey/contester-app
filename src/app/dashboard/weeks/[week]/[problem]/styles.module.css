@@ -36,3 +36,15 @@
 .week__completed {
     @apply absolute bottom-[-20px] right-0 font-black text-white/25 text-[50px] select-none;
 }
+
+.notfound {
+    @apply flex flex-col gap-4 items-center justify-center w-full min-h-[50vh];
+}
+
+.notfound__text {
+    @apply text-secondary-500 font-semibold text-[32px];
+}
+
+:global(.dark) .notfound__text {
+    @apply text-white;
+}

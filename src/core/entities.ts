@@ -1,16 +1,25 @@
 export interface IWeek {
-    id: string,
+    uniqueId: string,
     name: string,
-    deadline: Date,
-    problems: number
+    closed: boolean,
+    startDate: Date,
+    deadlineDate: Date,
+    problems: string[] | IProblem[]
 }
 
 export interface IProblem {
-    id: string,
-    name: string,
-    attempts: number,
-    week: IWeek,
-    limits: ILimits
+    uniqueId: string,
+    weekId: string,
+    title: string,
+    lore: string,
+    limits: ILimits,
+    tests: ITest[],
+    correctCode: string | null
+}
+
+export interface ITest {
+    input: string[],
+    output: string[]
 }
 
 export interface ILimits {
@@ -22,6 +31,7 @@ export interface IUser {
     uniqueId: string,
     type: string,
     profile: IStudent | ITeacher,
+    role: "USER" | "ADMIN"
 }
 
 export interface IStudent {
@@ -34,4 +44,18 @@ export interface IStudent {
 export interface ITeacher {
     name: string,
     surname: string
+}
+
+export interface ICode {
+    codeId: string,
+    languageType: string,
+    status: string
+}
+
+export interface IAttempt {
+    attemptId: string,
+    userId: string,
+    problemId: string,
+    createdDate: Date,
+    code: ICode
 }

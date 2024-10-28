@@ -15,7 +15,7 @@
     @apply grid gap-2
     grid-cols-2
     sm:grid-cols-3
-    md:grid-cols-5;
+    lg:grid-cols-5;
 }
 
 .week {
@@ -41,4 +41,16 @@
 
 .week__completed {
     @apply absolute bottom-[-20px] right-0 font-black text-white/25 text-[50px] select-none text-nowrap;
+}
+
+.create {
+    @apply bg-black/35 rounded-md cursor-pointer 
+    flex items-center justify-center 
+    text-white text-[32px] font-black 
+    select-none
+    opacity-50 hover:opacity-75;
+
+    :global(.dark) & {
+        @apply bg-white/15;
+    }
 }

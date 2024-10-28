@@ -1,4 +1,8 @@
 
+.info {
+    @apply w-full;
+}
+
 .title {
     @apply text-[32px] font-semibold text-secondary-500 mb-2;
 }

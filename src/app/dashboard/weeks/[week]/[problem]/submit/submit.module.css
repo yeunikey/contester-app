@@ -12,7 +12,7 @@
 }
 
 .submit__box {
-    @apply w-full h-32 bg-primary-500 rounded-md;
+    @apply w-full h-32 bg-white outline-none rounded-md;
 }
 
 .form {
@@ -52,5 +52,13 @@
 }
 
 .select__dark {
+    @apply bg-dark-background-2 text-white;
+}
+
+.submit__editor {
+    @apply outline-none text-secondary-500 bg-white rounded-md p-4 min-h-32;
+}
+
+:global(.dark) .submit__editor {
     @apply bg-dark-background-2 text-white;
 }

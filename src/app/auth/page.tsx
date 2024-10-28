@@ -9,7 +9,7 @@ import { cn } from '@/core/utils';
 import LoginIcon from '../../_assets/icons/login.svg';
 import s from './styles.module.css';
 import { useTheme } from '@/core/store/theme';
-import { xiorInstance } from '@/api/instance';
+import { baseUrl, xiorInstance } from '@/api/instance';
 import { log } from 'console';
 import xior from 'xior';
 import { useRouter } from 'next/navigation';
@@ -110,7 +110,7 @@ function Forms() {
                 return
             }
 
-        await xiorInstance.post('/auth/login', {
+        await xior.post(baseUrl + '/auth/login', {
                 "uniqueId": studentRef.current?.value,
                 "password": passwordRef.current?.value
             }).then(async (response) => {
