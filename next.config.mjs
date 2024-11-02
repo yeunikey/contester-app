@@ -20,7 +20,7 @@ const nextConfig = {
         return [
             {
                 source: '/api/:path*',
-                destination: 'http://unilabs-contester-backend-kbxhlg-dab6bc-194-87-209-23.traefik.me/v1/:path*',
+                destination: 'https://api.yeunikey.me/v1/:path*',
             },
         ];
     },
