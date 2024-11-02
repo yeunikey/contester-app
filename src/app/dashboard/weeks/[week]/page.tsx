@@ -15,6 +15,7 @@ import { useNavigation } from '@/core/store/navigation';
 import Loading from '@/components/loading/loading';
 import { useAuth } from '@/core/store/auth';
 import { useNotification } from '@/core/store/notification';
+import { useRouter } from 'next/navigation';
 
 function Page({ params }: { params: any }) {
 
@@ -127,6 +128,8 @@ function FoundedWeek({ week }: { week: IWeek }) {
 
 function Admin({ week }: { week: IWeek }) {
 
+    let router = useRouter();
+
     const fetchDelete = () => {
         xiorInstance.delete('/week/delete', {
             headers: withAuthorization(),
@@ -137,12 +140,18 @@ function Admin({ week }: { week: IWeek }) {
             window.location.href = '/';
         })
     }
-    
+
     return (
         <div className={s.admin}>
             <Button
                 text='Create Problem'
                 className={s.createproblem}
+                action={() => {
+                    router.push('/dashboard/weeks/' + week.uniqueId + "/create")
+                }}
+            ></Button>
+            <Button
+                text='Edit Week'
             ></Button>
             <Button
                 text='Delete week'
@@ -178,7 +187,7 @@ function Week({ week, completed }: { week: IWeek | null, completed: number }) {
                 {week?.name}
             </div>
             <div className={s.week__deadline}>
-                {week && getTimeLeft(week.deadlineDate)}
+                {week && getTimeLeft(week.deadlineDate, week.startDate)}
             </div>
             <div className={s.week__completed}>
                 {completed} / {week?.problems.length}

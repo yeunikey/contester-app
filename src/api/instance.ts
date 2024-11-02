@@ -15,7 +15,7 @@ export function withAuthorization(): Record<string, any> {
     }
 }
 
-export let baseUrl = 'http://localhost:1010/v1'
+export let baseUrl = '/api'
 
 export const xiorInstance = xior.create({
   baseURL: baseUrl,

@@ -11,10 +11,18 @@ const nextConfig = {
     swcMinify: true,
     eslint: {
         ignoreDuringBuilds: true,
-      },
+    },
     rules: {
     '@typescript-eslint/no-unused-vars': ['warn', { 'varsIgnorePattern': '^_' }],
     '@typescript-eslint/no-explicit-any': 'off',
+    },
+    async rewrites() {
+        return [
+            {
+                source: '/api/:path*',
+                destination: 'http://unilabs-contester-backend-kbxhlg-dab6bc-194-87-209-23.traefik.me/v1/:path*',
+            },
+        ];
     },
 };
 

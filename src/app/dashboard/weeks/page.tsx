@@ -82,7 +82,7 @@ function Week({ week, completed }: { week: IWeek, completed: number }) {
     }
 
     useEffect(() => {
-        setDeadline(getTimeLeft(week.deadlineDate));
+        setDeadline(getTimeLeft(week.deadlineDate, week.startDate));
     }, [])
 
     return (

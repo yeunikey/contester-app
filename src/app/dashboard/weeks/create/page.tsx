@@ -19,6 +19,7 @@ function Page() {
 
     let nameRef = useRef<HTMLInputElement>(null);
     let closedRef = useRef<HTMLInputElement>(null);
+    let startRef = useRef<HTMLInputElement>(null); 
     let deadlineRef = useRef<HTMLInputElement>(null); 
 
     const fetchData = () => {
@@ -26,7 +27,8 @@ function Page() {
         if (fetching) return;
         
         if (nameRef.current?.value == ''
-            || deadlineRef.current?.value == '') return;
+            || deadlineRef.current?.value == ''
+            || startRef.current?.value == '') return;
 
         setFetching(true);
 
@@ -35,6 +37,7 @@ function Page() {
             {
                 "name": nameRef.current?.value,
                 "closed": closedRef.current?.checked,
+                "createdDate": startRef.current?.value, 
                 "deadlineDate": deadlineRef.current?.value
             },
             {
@@ -58,7 +61,7 @@ function Page() {
             content={s.content}
         >
             <General nameRef={nameRef} closedRef={closedRef} createWeek={fetchData}></General>
-            <Deadline deadlineRef={deadlineRef}></Deadline>
+            <Deadline deadlineRef={deadlineRef} startRef={startRef}></Deadline>
         </Container>
     );
 }
@@ -82,12 +85,20 @@ function NotAdmin() {
 }
 
 function Deadline(
-    {deadlineRef}: {deadlineRef: any}
+    {deadlineRef, startRef}: {deadlineRef: any, startRef: any}
 ) {
     return (
         <Side
             title="Deadline"
         >
+            <Form
+                title="Start date"
+                input={
+                    <input ref={startRef} className={s.form__item} 
+                        type="datetime-local"
+                    ></input>
+                }
+            ></Form>
             <Form
                 title="Deadline date"
                 input={
