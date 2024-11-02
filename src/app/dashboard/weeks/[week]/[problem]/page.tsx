@@ -146,7 +146,7 @@ function Week({ week, completed }: { week: IWeek, completed: number }) {
                 {week?.name}
             </div>
             <div className={s.week__deadline}>
-                {week && getTimeLeft(week?.deadlineDate)}
+                {week && getTimeLeft(week.startDate, week?.deadlineDate)}
             </div>
             <div className={s.week__completed}>
                 {completed} / {week?.problems.length}
