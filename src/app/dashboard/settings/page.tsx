@@ -2,17 +2,17 @@
 
 import Cookies from 'js-cookie'
 import { useRef } from 'react'
-import xior from 'xior'
+import { toast } from 'sonner'
 
 import Button from '@/components/button/Button'
 import Container from '@/components/container/container'
 
-import { baseUrl, withAuthorization, xiorInstance } from '@/api/instance'
+import { withAuthorization, xiorInstance } from '@/api/instance'
 
 import s from './styles.module.css'
+
 import { IStudent } from '@/core/entities'
 import { useAuth } from '@/core/store/auth'
-import { useNotification } from '@/core/store/notification'
 import { cn } from '@/core/utils'
 
 function Settings() {
@@ -50,22 +50,13 @@ function ChangePassword() {
   let passwordRef = useRef<HTMLInputElement>(null)
   let repeatRef = useRef<HTMLInputElement>(null)
 
-  let notification = useNotification()
-
   const fetchChanges = () => {
     if (passwordRef.current?.value == '' || repeatRef.current?.value == '') {
-      notification.actions.setNotification({
-        type: 'red',
-        content: 'Password cannot be empty'
-      })
-      return
+      return toast.error('Password cannot be empty')
     }
+    
     if (passwordRef.current?.value != repeatRef.current?.value) {
-      notification.actions.setNotification({
-        type: 'red',
-        content: 'Passwords are different from each other'
-      })
-      return
+      return toast.error('Passwords are different from each other')
     }
 
     xiorInstance
@@ -78,11 +69,8 @@ function ChangePassword() {
           headers: withAuthorization()
         }
       )
-      .then((response) => {
-        notification.actions.setNotification({
-          type: 'green',
-          content: 'Your password was changed'
-        })
+      .then(() => {
+        toast.success('Your password was changed')
       })
   }
 
