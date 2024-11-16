@@ -17,9 +17,9 @@ export let useAuth = create<AuthState>((set) => ({
   user: null,
 
   actions: {
-    setAuthenticated: (authentificated) =>
+    setAuthenticated: (authenticated) =>
       set(() => ({
-        authenticated: authentificated
+        authenticated: authenticated
       })),
     setUser: (user) =>
       set(() => ({
