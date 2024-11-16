@@ -131,7 +131,10 @@ function Forms() {
               >
                 {groups.map((group, i) => {
                   return (
-                    <option key={i} value={group}>
+                    <option
+                      key={i}
+                      value={group}
+                    >
                       {group}
                     </option>
                   )
@@ -142,10 +145,17 @@ function Forms() {
           <Form
             title='Fullname'
             input={
-              <select ref={studentRef} className={cn(s.select, darkMode ? s.select__dark : '')} name={'Fullname'}>
+              <select
+                ref={studentRef}
+                className={cn(s.select, darkMode ? s.select__dark : '')}
+                name={'Fullname'}
+              >
                 {students.map((student, i) => {
                   return (
-                    <option key={i} value={student.uniqueId}>
+                    <option
+                      key={i}
+                      value={student.uniqueId}
+                    >
                       {student.name + ' ' + student.surname}
                     </option>
                   )
@@ -158,13 +168,24 @@ function Forms() {
           <form className={s.formclass}>
             <Form
               title='Password'
-              input={<input ref={passwordRef} className={s.form__item} type='password' placeholder='Your password' />}
+              input={
+                <input
+                  ref={passwordRef}
+                  className={s.form__item}
+                  type='password'
+                  placeholder='Your password'
+                />
+              }
             ></Form>
           </form>
         </Row>
       </div>
       <div className={s.button}>
-        <Button text='Login' icon={<LoginIcon />} action={login}></Button>
+        <Button
+          text='Login'
+          icon={<LoginIcon />}
+          action={login}
+        ></Button>
       </div>
     </>
   )

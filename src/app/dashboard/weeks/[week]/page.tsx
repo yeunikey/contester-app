@@ -67,7 +67,10 @@ function Page({ params }: { params: any }) {
   }
 
   return (
-    <Container parent={s.page} content={s.content}>
+    <Container
+      parent={s.page}
+      content={s.content}
+    >
       {!week ? <NotFound /> : <FoundedWeek week={week} />}
     </Container>
   )
@@ -96,8 +99,15 @@ function FoundedWeek({ week }: { week: IWeek }) {
   return (
     <>
       <div className={s.actions}>
-        <Week week={week} completed={0} />
-        <Button text='Back' href='/dashboard/weeks' icon={<ExitIcon />}></Button>
+        <Week
+          week={week}
+          completed={0}
+        />
+        <Button
+          text='Back'
+          href='/dashboard/weeks'
+          icon={<ExitIcon />}
+        ></Button>
 
         {auth.user?.role == 'ADMIN' && <Admin week={week} />}
       </div>
@@ -106,7 +116,14 @@ function FoundedWeek({ week }: { week: IWeek }) {
         <div className={s.problems__list}>
           {week &&
             (week?.problems as IProblem[]).map((problem, i) => {
-              return <Problem key={i} problem={problem} i={i + 1} completed={false} />
+              return (
+                <Problem
+                  key={i}
+                  problem={problem}
+                  i={i + 1}
+                  completed={false}
+                />
+              )
             })}
         </div>
       </div>
@@ -140,14 +157,21 @@ function Admin({ week }: { week: IWeek }) {
         }}
       ></Button>
       <Button text='Edit Week' />
-      <Button text='Delete week' className={s.removeweek} action={fetchDelete} />
+      <Button
+        text='Delete week'
+        className={s.removeweek}
+        action={fetchDelete}
+      />
     </div>
   )
 }
 
 function Problem({ problem, completed, i }: { problem: IProblem; completed: boolean; i: number }) {
   return (
-    <Link className={s.problem} href={`/dashboard/weeks/${problem.weekId}/${problem.uniqueId}`}>
+    <Link
+      className={s.problem}
+      href={`/dashboard/weeks/${problem.weekId}/${problem.uniqueId}`}
+    >
       <div className={s.problem__number}>#{i}</div>
       <div className={s.problem__name}>{problem.title}</div>
     </Link>

@@ -22,18 +22,30 @@ function Info({
       <Limits problem={problem} />
 
       <div className={s.contents}>
-        <div className={s.lore} dangerouslySetInnerHTML={{ __html: problem.lore }} />
+        <div
+          className={s.lore}
+          dangerouslySetInnerHTML={{ __html: problem.lore }}
+        />
 
         <div className={cn(s.tests)}>
           <div className={s.tests__title}>Tests</div>
           <div className={s.tests__content}>
             {problem.tests.map((test: ITest, i) => {
-              return <Test key={i} i={i} test={test} />
+              return (
+                <Test
+                  key={i}
+                  i={i}
+                  test={test}
+                />
+              )
             })}
           </div>
         </div>
 
-        <Submit problem={problem} setUpdate={setUpdate} />
+        <Submit
+          problem={problem}
+          setUpdate={setUpdate}
+        />
       </div>
     </div>
   )

@@ -11,7 +11,10 @@ import { cn } from '@/core/utils'
 
 function CreateProblem() {
   return (
-    <Container parent={s.settings} content={s.content}>
+    <Container
+      parent={s.settings}
+      content={s.content}
+    >
       <General />
       <Tests />
       <Lore />
@@ -75,14 +78,41 @@ function General() {
       <Side title='Create problem'>
         <Form
           title='Problem title'
-          input={<input className={s.form__item} type='text' placeholder='Problem title' />}
+          input={
+            <input
+              className={s.form__item}
+              type='text'
+              placeholder='Problem title'
+            />
+          }
         ></Form>
 
-        <Button text='Create problem' className={cn(s.form__button, s.create__button)} />
+        <Button
+          text='Create problem'
+          className={cn(s.form__button, s.create__button)}
+        />
       </Side>
       <Side title='Limits'>
-        <Form title='Time limit' input={<input className={s.form__item} type='number' defaultValue={2000} />}></Form>
-        <Form title='Memory limit' input={<input className={s.form__item} type='number' defaultValue={65000} />}></Form>
+        <Form
+          title='Time limit'
+          input={
+            <input
+              className={s.form__item}
+              type='number'
+              defaultValue={2000}
+            />
+          }
+        ></Form>
+        <Form
+          title='Memory limit'
+          input={
+            <input
+              className={s.form__item}
+              type='number'
+              defaultValue={65000}
+            />
+          }
+        ></Form>
       </Side>
     </Row>
   )

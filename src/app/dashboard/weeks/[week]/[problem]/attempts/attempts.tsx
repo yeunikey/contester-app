@@ -62,7 +62,12 @@ function Attempts({ problem, update, setUpdate }: { problem: IProblem; update: b
 
       <div className={s.attempts__content}>
         {attempts.map((attempt: IAttempt, i) => {
-          return <Attempt key={i} attempt={attempt} />
+          return (
+            <Attempt
+              key={i}
+              attempt={attempt}
+            />
+          )
         })}
       </div>
     </div>
@@ -109,7 +114,10 @@ function Attempt({ attempt }: { attempt: IAttempt }) {
 
   return (
     <div className={s.attempt}>
-      <div className={cn(s.attempt__upper, status)} onClick={() => setShow(!show)}>
+      <div
+        className={cn(s.attempt__upper, status)}
+        onClick={() => setShow(!show)}
+      >
         {formatted[attempt.code.status as 'ACCEPTED' | 'WRONG_ANSWER' | 'NOT_CHECKED']}
         <div className={s.attempt__date}>{formatDate(attempt.createdDate)}</div>
       </div>

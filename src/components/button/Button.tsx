@@ -32,7 +32,10 @@ function Button({ text, icon, action, href, className }: ButtonProps) {
   }
 
   return (
-    <div className={cn(s.button, !className ? '' : className)} onClick={onClick}>
+    <div
+      className={cn(s.button, !className ? '' : className)}
+      onClick={onClick}
+    >
       {icon && <div className={s.button__icon}>{icon}</div>}
       {text && <div className={s.button__text}>{text}</div>}
     </div>

@@ -17,7 +17,10 @@ import { cn } from '@/core/utils'
 
 function Settings() {
   return (
-    <Container parent={s.settings} content={s.content}>
+    <Container
+      parent={s.settings}
+      content={s.content}
+    >
       <Account />
       <ChangePassword />
       <Exit />
@@ -34,7 +37,11 @@ function Exit() {
   return (
     <div className={s.side}>
       <div className={s.title}>Account</div>
-      <Button text='Exit from Account' className={s.exit} action={exit} />
+      <Button
+        text='Exit from Account'
+        className={s.exit}
+        action={exit}
+      />
     </div>
   )
 }
@@ -86,14 +93,32 @@ function ChangePassword() {
         <form className={s.formclass}>
           <Form
             title='New password'
-            input={<input ref={passwordRef} className={s.form__item} type='password' placeholder='Your password' />}
+            input={
+              <input
+                ref={passwordRef}
+                className={s.form__item}
+                type='password'
+                placeholder='Your password'
+              />
+            }
           ></Form>
           <Form
             title='Password repeat'
-            input={<input ref={repeatRef} className={s.form__item} type='password' placeholder='Your password' />}
+            input={
+              <input
+                ref={repeatRef}
+                className={s.form__item}
+                type='password'
+                placeholder='Your password'
+              />
+            }
           ></Form>
         </form>
-        <Button text='Save password' className={s.form__button} action={fetchChanges} />
+        <Button
+          text='Save password'
+          className={s.form__button}
+          action={fetchChanges}
+        />
       </div>
     </div>
   )
@@ -116,7 +141,10 @@ function Account() {
             input={<div className={s.form__locked}>{(auth.user?.profile as IStudent).group}</div>}
           ></Form>
         )}
-        <Form title='Teacher' input={<div className={s.form__locked}>Имя Фамилия</div>}></Form>
+        <Form
+          title='Teacher'
+          input={<div className={s.form__locked}>Имя Фамилия</div>}
+        ></Form>
       </div>
     </div>
   )

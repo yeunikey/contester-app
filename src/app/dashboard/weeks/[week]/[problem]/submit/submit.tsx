@@ -49,7 +49,11 @@ function Submit({ problem, setUpdate }: { problem: IProblem; setUpdate: Function
   return (
     <div className={s.submit}>
       <div className={s.submit__title}>Submit your code</div>
-      <textarea className={s.submit__editor} placeholder='Your code here' ref={codeRef} />
+      <textarea
+        className={s.submit__editor}
+        placeholder='Your code here'
+        ref={codeRef}
+      />
       <Form
         className={s.submit__form}
         title='Select language'
@@ -64,7 +68,11 @@ function Submit({ problem, setUpdate }: { problem: IProblem; setUpdate: Function
           </select>
         }
       />
-      <Button text='Submit' className={s.submit__button} action={fetchData} />
+      <Button
+        text='Submit'
+        className={s.submit__button}
+        action={fetchData}
+      />
     </div>
   )
 }

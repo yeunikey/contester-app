@@ -43,12 +43,21 @@ function Weeks() {
   }, [])
 
   return (
-    <Container parent={s.weeks} content={s.content}>
+    <Container
+      parent={s.weeks}
+      content={s.content}
+    >
       <div className={s.title}>Current weeks</div>
 
       <div className={s.list}>
         {weeks.map((week, i) => {
-          return <Week key={i} week={week} completed={0} />
+          return (
+            <Week
+              key={i}
+              week={week}
+              completed={0}
+            />
+          )
         })}
         {auth.user?.role == 'ADMIN' && <CreateWeek />}
       </div>
@@ -58,7 +67,10 @@ function Weeks() {
 
 function CreateWeek() {
   return (
-    <Link href={'/dashboard/weeks/create'} className={s.create}>
+    <Link
+      href={'/dashboard/weeks/create'}
+      className={s.create}
+    >
       +
     </Link>
   )
@@ -79,7 +91,10 @@ function Week({ week, completed }: { week: IWeek; completed: number }) {
   }, [])
 
   return (
-    <Link className={cn(s.week, status)} href={'/dashboard/weeks/' + week.uniqueId}>
+    <Link
+      className={cn(s.week, status)}
+      href={'/dashboard/weeks/' + week.uniqueId}
+    >
       <div className={s.week__title}>{week.name}</div>
       <div className={s.week__deadline}>{deadline}</div>
       <div className={s.week__completed}>

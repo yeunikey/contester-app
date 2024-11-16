@@ -39,7 +39,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        <meta name='theme-color' content='#FFFFF' />
+        <meta
+          name='theme-color'
+          content='#FFFFF'
+        />
         <script dangerouslySetInnerHTML={{ __html: setInitialThemeScript }} />
       </head>
       <body>

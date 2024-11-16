@@ -21,7 +21,10 @@ import { storedTheme, useTheme } from '@/core/store/theme'
 
 function Header() {
   return (
-    <Container parent={s.header} content={s.content}>
+    <Container
+      parent={s.header}
+      content={s.content}
+    >
       <Side>
         <Company />
         <Links />
@@ -44,8 +47,16 @@ function Company() {
   let navigation = useNavigation()
 
   return (
-    <Link className={s.company} href={'/'} onClick={() => navigation.actions.setPage('weeks')}>
-      <Image className={s.company__logo} src={logo} alt='logo' />
+    <Link
+      className={s.company}
+      href={'/'}
+      onClick={() => navigation.actions.setPage('weeks')}
+    >
+      <Image
+        className={s.company__logo}
+        src={logo}
+        alt='logo'
+      />
       <div className={s.company__name}>CONTESTER</div>
     </Link>
   )
@@ -55,7 +66,14 @@ function Links() {
   return (
     <div className={s.links}>
       {pages.map((page, i) => {
-        return <LinkItem key={i} id={page.key} text={page.page} href={page.href} />
+        return (
+          <LinkItem
+            key={i}
+            id={page.key}
+            text={page.page}
+            href={page.href}
+          />
+        )
       })}
     </div>
   )
@@ -65,7 +83,11 @@ function LinkItem({ text, href, id }: { text: string; id: string; href: string }
   let navigation = useNavigation((state) => state.actions)
 
   return (
-    <Link className={s.link} href={href} onClick={() => navigation.setPage(id)}>
+    <Link
+      className={s.link}
+      href={href}
+      onClick={() => navigation.setPage(id)}
+    >
       {text}
     </Link>
   )
@@ -104,18 +126,33 @@ function Action() {
     <>
       <Burger />
 
-      <div className={s.theme} onClick={toggleDark}>
-        <ThemeIcon className={s.theme__icon} alt='theme' />
+      <div
+        className={s.theme}
+        onClick={toggleDark}
+      >
+        <ThemeIcon
+          className={s.theme__icon}
+          alt='theme'
+        />
       </div>
 
       {auth.authentificated && (
-        <Link href={'/dashboard/settings'} className={s.logged} onClick={() => navigation.actions.setPage('settings')}>
+        <Link
+          href={'/dashboard/settings'}
+          className={s.logged}
+          onClick={() => navigation.actions.setPage('settings')}
+        >
           {auth.user?.profile.name + ' ' + auth.user?.profile.surname}
         </Link>
       )}
 
       {!auth.authentificated && (
-        <Button text='Login' className={s.button} icon={<LoginIcon alt='login' />} href='/auth'></Button>
+        <Button
+          text='Login'
+          className={s.button}
+          icon={<LoginIcon alt='login' />}
+          href='/auth'
+        ></Button>
       )}
     </>
   )

@@ -28,7 +28,10 @@ function Notification() {
   }
 
   return (
-    <div className={s.notification} onClick={reset}>
+    <div
+      className={s.notification}
+      onClick={reset}
+    >
       <div className={cn(s.content, notification.type == 'green' ? s.green : s.red)}>{notification.content}</div>
     </div>
   )

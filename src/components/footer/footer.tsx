@@ -12,7 +12,10 @@ import { useNavigation } from '@/core/store/navigation'
 
 function Footer() {
   return (
-    <Container parent={s.footer} content={s.content}>
+    <Container
+      parent={s.footer}
+      content={s.content}
+    >
       <Side>
         <Company />
         <div className={s.company__lore}>
@@ -34,13 +37,21 @@ function Links() {
       <div className={s.links}>
         <div className={s.links__title}>General</div>
         <div className={s.links__items}>
-          <Item text='Weeks' href='/dashboard/weeks' id='weeks' />
+          <Item
+            text='Weeks'
+            href='/dashboard/weeks'
+            id='weeks'
+          />
         </div>
       </div>
       <div className={s.links}>
         <div className={s.links__title}>Account</div>
         <div className={s.links__items}>
-          <Item text='Settings' href='/dashboard/settings' id={'settings'} />
+          <Item
+            text='Settings'
+            href='/dashboard/settings'
+            id={'settings'}
+          />
         </div>
       </div>
     </>
@@ -50,7 +61,11 @@ function Links() {
 function Item({ text, id, href }: { text: string; id: string; href: string }) {
   let navigation = useNavigation((state) => state.actions)
   return (
-    <Link className={s.links__item} href={href} onClick={() => navigation.setPage(id)}>
+    <Link
+      className={s.links__item}
+      href={href}
+      onClick={() => navigation.setPage(id)}
+    >
       {text}
     </Link>
   )
@@ -64,8 +79,16 @@ function Company() {
   let navigation = useNavigation()
 
   return (
-    <Link className={s.company} href={'/'} onClick={() => navigation.actions.setPage('weeks')}>
-      <Image className={s.company__logo} src={logo} alt='logo' />
+    <Link
+      className={s.company}
+      href={'/'}
+      onClick={() => navigation.actions.setPage('weeks')}
+    >
+      <Image
+        className={s.company__logo}
+        src={logo}
+        alt='logo'
+      />
       <div className={s.company__name}>CONTESTER</div>
     </Link>
   )

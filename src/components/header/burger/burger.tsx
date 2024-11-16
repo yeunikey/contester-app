@@ -15,7 +15,10 @@ function Burger() {
   return (
     <>
       <div className={s.burger}>
-        <div className={s.button} onClick={toggle}>
+        <div
+          className={s.button}
+          onClick={toggle}
+        >
           <BurgerIcon className={s.icon} />
         </div>
       </div>
