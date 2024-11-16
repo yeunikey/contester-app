@@ -4,7 +4,6 @@ import { Toaster } from 'sonner'
 
 import Footer from '@/components/footer/footer'
 import Header from '@/components/header/header'
-import Notification from '@/components/notification/notification'
 
 import { cn } from '@/core/utils'
 
@@ -51,8 +50,6 @@ export default function RootLayout({
           <Header />
 
           <div className={cn('flex-grow', 'min-h-[70vh]', 'relative', jakarta.className)}>
-            <Notification />
-
             {children}
           </div>
 

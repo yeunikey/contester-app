@@ -2,8 +2,6 @@
 
 import { useEffect } from 'react'
 
-import Notification from '@/components/notification/notification'
-
 import { storedTheme, useTheme } from '@/core/store/theme'
 
 export default function Layout({ children }: { children: any }) {
@@ -20,7 +18,6 @@ export default function Layout({ children }: { children: any }) {
 
   return (
     <div className='relative'>
-      <Notification />
       {children}
     </div>
   )
