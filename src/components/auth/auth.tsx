@@ -20,7 +20,7 @@ function AuthProvider({ children }: { children: any }) {
       .then((response) => {
         let user: IUser = response.data.data
         auth.actions.setUser(user)
-        auth.actions.setAuthentificated(true)
+        auth.actions.setAuthenticated(true)
       })
       .catch((err) => {
         Cookies.remove('token')
@@ -28,7 +28,7 @@ function AuthProvider({ children }: { children: any }) {
       })
   }, [])
 
-  if (!auth.authentificated) {
+  if (!auth.authenticated) {
     return <Loading className='min-h-[70vh]' />
   }
 

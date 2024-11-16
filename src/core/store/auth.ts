@@ -3,23 +3,23 @@ import { create } from 'zustand'
 import { IUser } from '../entities'
 
 interface AuthState {
-  authentificated: boolean
+  authenticated: boolean
   user: IUser | null
 
   actions: {
-    setAuthentificated: (authentificated: boolean) => void
+    setAuthenticated: (authenticated: boolean) => void
     setUser: (user: IUser) => void
   }
 }
 
 export let useAuth = create<AuthState>((set) => ({
-  authentificated: false,
+  authenticated: false,
   user: null,
 
   actions: {
-    setAuthentificated: (authentificated) =>
+    setAuthenticated: (authentificated) =>
       set(() => ({
-        authentificated: authentificated
+        authenticated: authentificated
       })),
     setUser: (user) =>
       set(() => ({

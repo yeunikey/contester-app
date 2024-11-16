@@ -93,7 +93,7 @@ function Sidebar({ toggle }: { toggle: any }) {
             />
           </div>
 
-          {auth.authentificated && (
+          {auth.authenticated && (
             <Link
               href={'/dashboard/settings'}
               className={s.logged}
@@ -103,7 +103,7 @@ function Sidebar({ toggle }: { toggle: any }) {
             </Link>
           )}
 
-          {!auth.authentificated && (
+          {!auth.authenticated && (
             <Button
               text='Login'
               className={s.button}

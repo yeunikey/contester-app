@@ -136,7 +136,7 @@ function Action() {
         />
       </div>
 
-      {auth.authentificated && (
+      {auth.authenticated && (
         <Link
           href={'/dashboard/settings'}
           className={s.logged}
@@ -146,7 +146,7 @@ function Action() {
         </Link>
       )}
 
-      {!auth.authentificated && (
+      {!auth.authenticated && (
         <Button
           text='Login'
           className={s.button}
