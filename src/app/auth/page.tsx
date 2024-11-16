@@ -1,20 +1,18 @@
 'use client'
 
-import { log } from 'console'
 import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import Select, { OptionsOrGroups, StylesConfig, ThemeConfig } from 'react-select'
+import { toast } from 'sonner'
 import xior from 'xior'
 
 import Button from '@/components/button/Button'
 
 import { baseUrl, xiorInstance } from '@/api/instance'
 
+import s from './styles.module.css'
+
 import LoginIcon from '../../_assets/icons/login.svg'
 
-import s from './styles.module.css'
-import { useNotification } from '@/core/store/notification'
 import { useTheme } from '@/core/store/theme'
 import { cn } from '@/core/utils'
 
@@ -37,7 +35,6 @@ function Auth() {
 
 function Forms() {
   let darkMode = useTheme((state) => state.currentTheme)
-  let notification = useNotification()
 
   let [groups, setGroups] = useState<string[]>([])
   let groupRef = useRef<HTMLSelectElement>(null)
@@ -89,11 +86,7 @@ function Forms() {
 
   const login = async () => {
     if (passwordRef.current?.value == '' || studentRef.current?.value == '' || groupRef.current?.value == '') {
-      notification.actions.setNotification({
-        type: 'red',
-        content: 'Not all fields are filled in'
-      })
-      return
+      return toast.error('Not all fields are filled in')
     }
 
     await xior
@@ -103,11 +96,7 @@ function Forms() {
       })
       .then(async (response) => {
         if (response.data.status == 'ERROR') {
-          notification.actions.setNotification({
-            type: 'red',
-            content: 'Incorrect password'
-          })
-          return
+          return toast.error('Incorrect password')
         }
 
         Cookies.set('token', response.data.data.token)

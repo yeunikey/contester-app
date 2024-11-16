@@ -12,12 +12,11 @@ import { withAuthorization, xiorInstance } from '@/api/instance'
 
 import ExitIcon from '../../../../_assets/icons/login.svg'
 
-import s from './styles.module.css'
 import { IProblem, IWeek } from '@/core/entities'
 import { useAuth } from '@/core/store/auth'
 import { useNavigation } from '@/core/store/navigation'
-import { useNotification } from '@/core/store/notification'
 import { cn, getTimeLeft } from '@/core/utils'
+import s from './styles.module.css'
 
 function Page({ params }: { params: any }) {
   let [fetching, setFetching] = useState(true)
