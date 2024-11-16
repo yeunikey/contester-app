@@ -1,38 +1,38 @@
-import { withAuthorization, xiorInstance } from "@/api/instance";
-import { useAuth } from "@/core/store/auth";
-import { useEffect } from "react";
-import Cookies from 'js-cookie';
-import { IUser } from "@/core/entities";
+import Cookies from 'js-cookie'
+import { useEffect } from 'react'
 
-import s from './auth.module.css';
-import Loading from "../loading/loading";
+import { withAuthorization, xiorInstance } from '@/api/instance'
 
-function AuthProvider({children}: {children: any}) {
-    
-    let auth = useAuth();
+import Loading from '../loading/loading'
 
-    useEffect(() => {
-        xiorInstance.get('/user/get', {
-            headers: withAuthorization()
-            }).then((response) => {
-                
-                let user: IUser = response.data.data;
-                auth.actions.setUser(user);
-                auth.actions.setAuthentificated(true);
+import s from './auth.module.css'
+import { IUser } from '@/core/entities'
+import { useAuth } from '@/core/store/auth'
 
-            }).catch((err) => {
-                Cookies.remove('token');
-                window.location.href = '/auth';
-            })
-    }, [])
+function AuthProvider({ children }: { children: any }) {
+  let auth = useAuth()
 
-    if (!auth.authentificated) {
-        return <Loading className="min-h-[70vh]"></Loading>
-    }
+  useEffect(() => {
+    xiorInstance
+      .get('/user/get', {
+        headers: withAuthorization()
+      })
+      .then((response) => {
+        let user: IUser = response.data.data
+        auth.actions.setUser(user)
+        auth.actions.setAuthentificated(true)
+      })
+      .catch((err) => {
+        Cookies.remove('token')
+        window.location.href = '/auth'
+      })
+  }, [])
 
-    return (<>
-        {children}
-    </>);
+  if (!auth.authentificated) {
+    return <Loading className='min-h-[70vh]' />
+  }
+
+  return <>{children}</>
 }
 
-export default AuthProvider;
+export default AuthProvider

@@ -1,0 +1,37 @@
+{
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "trailingComma": "none",
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "singleAttributePerLine": true,
+  "arrowParens": "always",
+
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@/components/(.*)$",
+    "^@/layout/(.*)$",
+    "^@/ui/(.*)$",
+    "^@/providers/(.*)$",
+    "^@/constants/(.*)$",
+    "^@/types/(.*)$",
+    "^@/assets/(.*)$",
+    "^@/config/(.*)$",
+    "^@/store/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/utils/(.*)$",
+    "^@/services/(.*)$",
+    "^@/api/(.*)$",
+    "^../(.*)",
+    "^./(.*)",
+    "^[./]",
+    "(.scss)$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": false,
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports"
+  ]
+}
