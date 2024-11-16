@@ -63,12 +63,12 @@ function Page({ params }: { params: any }) {
   }, [])
 
   if (fetching) {
-    return <Loading className='h-[40vh]'/>
+    return <Loading className='h-[40vh]' />
   }
 
   return (
     <Container parent={s.page} content={s.content}>
-      {!week ? <NotFound /> : <FoundedWeek week={week}/>}
+      {!week ? <NotFound /> : <FoundedWeek week={week} />}
     </Container>
   )
 }
@@ -96,17 +96,17 @@ function FoundedWeek({ week }: { week: IWeek }) {
   return (
     <>
       <div className={s.actions}>
-        <Week week={week} completed={0}/>
+        <Week week={week} completed={0} />
         <Button text='Back' href='/dashboard/weeks' icon={<ExitIcon />}></Button>
 
-        {auth.user?.role == 'ADMIN' && <Admin week={week}/>}
+        {auth.user?.role == 'ADMIN' && <Admin week={week} />}
       </div>
       <div className={s.problems}>
         <div className={s.problems__title}>Problems list</div>
         <div className={s.problems__list}>
           {week &&
             (week?.problems as IProblem[]).map((problem, i) => {
-              return <Problem key={i} problem={problem} i={i + 1} completed={false}/>
+              return <Problem key={i} problem={problem} i={i + 1} completed={false} />
             })}
         </div>
       </div>
@@ -139,8 +139,8 @@ function Admin({ week }: { week: IWeek }) {
           router.push('/dashboard/weeks/' + week.uniqueId + '/create')
         }}
       ></Button>
-      <Button text='Edit Week'/>
-      <Button text='Delete week' className={s.removeweek} action={fetchDelete}/>
+      <Button text='Edit Week' />
+      <Button text='Delete week' className={s.removeweek} action={fetchDelete} />
     </div>
   )
 }

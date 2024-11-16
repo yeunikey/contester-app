@@ -34,7 +34,7 @@ function Exit() {
   return (
     <div className={s.side}>
       <div className={s.title}>Account</div>
-      <Button text='Exit from Account' className={s.exit} action={exit}/>
+      <Button text='Exit from Account' className={s.exit} action={exit} />
     </div>
   )
 }
@@ -93,7 +93,7 @@ function ChangePassword() {
             input={<input ref={repeatRef} className={s.form__item} type='password' placeholder='Your password' />}
           ></Form>
         </form>
-        <Button text='Save password' className={s.form__button} action={fetchChanges}/>
+        <Button text='Save password' className={s.form__button} action={fetchChanges} />
       </div>
     </div>
   )

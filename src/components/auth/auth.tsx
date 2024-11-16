@@ -29,7 +29,7 @@ function AuthProvider({ children }: { children: any }) {
   }, [])
 
   if (!auth.authentificated) {
-    return <Loading className='min-h-[70vh]'/>
+    return <Loading className='min-h-[70vh]' />
   }
 
   return <>{children}</>

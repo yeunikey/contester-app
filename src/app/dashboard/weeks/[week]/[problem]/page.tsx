@@ -80,16 +80,12 @@ function Page({ params }: { params: any }) {
   }, [])
 
   if (fetching) {
-    return <Loading className='h-[40vh]'/>
+    return <Loading className='h-[40vh]' />
   }
 
   return (
     <Container parent={s.problem}>
-      {week == null || problem == null ? (
-        <NotFound />
-      ) : (
-        <ProblemFound week={week} problem={problem}/>
-      )}
+      {week == null || problem == null ? <NotFound /> : <ProblemFound week={week} problem={problem} />}
     </Container>
   )
 }
@@ -118,13 +114,13 @@ function ProblemFound({ week, problem }: { week: IWeek; problem: IProblem }) {
     <>
       <div className={s.content}>
         <div className={s.actions}>
-          <Week week={week} completed={14}/>
+          <Week week={week} completed={14} />
           <Button text='Back' href={`/dashboard/weeks/${week?.uniqueId}`} icon={<ExitIcon />}></Button>
         </div>
-        <Info problem={problem} week={week} update={update} setUpdate={setUpdate}/>
+        <Info problem={problem} week={week} update={update} setUpdate={setUpdate} />
       </div>
 
-      <Attempts problem={problem} update={update} setUpdate={setUpdate}/>
+      <Attempts problem={problem} update={update} setUpdate={setUpdate} />
     </>
   )
 }

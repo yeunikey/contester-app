@@ -16,11 +16,11 @@ function Burger() {
     <>
       <div className={s.burger}>
         <div className={s.button} onClick={toggle}>
-          <BurgerIcon className={s.icon}/>
+          <BurgerIcon className={s.icon} />
         </div>
       </div>
 
-      {show && <Sidebar toggle={toggle}/>}
+      {show && <Sidebar toggle={toggle} />}
     </>
   )
 }

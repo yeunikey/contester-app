@@ -40,7 +40,7 @@ function Lore() {
         ></textarea>
       </Side>
       <Side title='Preview'>
-        <div id='preview'/>
+        <div id='preview' />
       </Side>
     </Row>
   )
@@ -78,7 +78,7 @@ function General() {
           input={<input className={s.form__item} type='text' placeholder='Problem title' />}
         ></Form>
 
-        <Button text='Create problem' className={cn(s.form__button, s.create__button)}/>
+        <Button text='Create problem' className={cn(s.form__button, s.create__button)} />
       </Side>
       <Side title='Limits'>
         <Form title='Time limit' input={<input className={s.form__item} type='number' defaultValue={2000} />}></Form>

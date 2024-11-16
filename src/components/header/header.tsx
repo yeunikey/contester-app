@@ -45,7 +45,7 @@ function Company() {
 
   return (
     <Link className={s.company} href={'/'} onClick={() => navigation.actions.setPage('weeks')}>
-      <Image className={s.company__logo} src={logo} alt='logo'/>
+      <Image className={s.company__logo} src={logo} alt='logo' />
       <div className={s.company__name}>CONTESTER</div>
     </Link>
   )
@@ -105,7 +105,7 @@ function Action() {
       <Burger />
 
       <div className={s.theme} onClick={toggleDark}>
-        <ThemeIcon className={s.theme__icon} alt='theme'/>
+        <ThemeIcon className={s.theme__icon} alt='theme' />
       </div>
 
       {auth.authentificated && (
@@ -115,7 +115,7 @@ function Action() {
       )}
 
       {!auth.authentificated && (
-        <Button text='Login' className={s.button} icon={<LoginIcon alt='login'/>} href='/auth'></Button>
+        <Button text='Login' className={s.button} icon={<LoginIcon alt='login' />} href='/auth'></Button>
       )}
     </>
   )

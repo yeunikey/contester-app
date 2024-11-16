@@ -49,7 +49,7 @@ function Page() {
   }
 
   if (auth.user == null) {
-    return <Loading className='min-h-[40vh] w-full'/>
+    return <Loading className='min-h-[40vh] w-full' />
   }
 
   if (auth.user.role != 'ADMIN') {
@@ -58,8 +58,8 @@ function Page() {
 
   return (
     <Container parent={s.settings} content={s.content}>
-      <General nameRef={nameRef} closedRef={closedRef} createWeek={fetchData}/>
-      <Deadline deadlineRef={deadlineRef} startRef={startRef}/>
+      <General nameRef={nameRef} closedRef={closedRef} createWeek={fetchData} />
+      <Deadline deadlineRef={deadlineRef} startRef={startRef} />
     </Container>
   )
 }
@@ -84,13 +84,10 @@ function NotAdmin() {
 function Deadline({ deadlineRef, startRef }: { deadlineRef: any; startRef: any }) {
   return (
     <Side title='Deadline'>
-      <Form
-        title='Start date'
-        input={<input ref={startRef} className={s.form__item} type='datetime-local'/>}
-      ></Form>
+      <Form title='Start date' input={<input ref={startRef} className={s.form__item} type='datetime-local' />}></Form>
       <Form
         title='Deadline date'
-        input={<input ref={deadlineRef} className={s.form__item} type='datetime-local'/>}
+        input={<input ref={deadlineRef} className={s.form__item} type='datetime-local' />}
       ></Form>
     </Side>
   )
@@ -109,7 +106,7 @@ function General({ nameRef, closedRef, createWeek }: { nameRef: any; closedRef: 
         <label>is closed?</label>
       </div>
 
-      <Button text='Create week' className={cn(s.form__button, s.create__button)} action={createWeek}/>
+      <Button text='Create week' className={cn(s.form__button, s.create__button)} action={createWeek} />
     </Side>
   )
 }

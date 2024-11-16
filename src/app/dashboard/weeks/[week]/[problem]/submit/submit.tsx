@@ -49,7 +49,7 @@ function Submit({ problem, setUpdate }: { problem: IProblem; setUpdate: Function
   return (
     <div className={s.submit}>
       <div className={s.submit__title}>Submit your code</div>
-      <textarea className={s.submit__editor} placeholder='Your code here' ref={codeRef}/>
+      <textarea className={s.submit__editor} placeholder='Your code here' ref={codeRef} />
       <Form
         className={s.submit__form}
         title='Select language'
