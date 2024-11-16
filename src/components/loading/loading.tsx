@@ -5,7 +5,7 @@ import { cn } from '@/core/utils'
 function Loading({ className }: { className?: string }) {
   return (
     <div className={cn(s.loading, !className ? '' : className)}>
-      <LoadingIcon></LoadingIcon>
+      <LoadingIcon />
     </div>
   )
 }

@@ -20,7 +20,7 @@ export default function Layout({ children }: { children: any }) {
 
   return (
     <div className='relative'>
-      <Notification></Notification>
+      <Notification />
       {children}
     </div>
   )

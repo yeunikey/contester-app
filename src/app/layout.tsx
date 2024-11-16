@@ -39,20 +39,20 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        <meta name='theme-color' content='#FFFFF'></meta>
+        <meta name='theme-color' content='#FFFFF'/>
         <script dangerouslySetInnerHTML={{ __html: setInitialThemeScript }} />
       </head>
       <body>
         <div className='App'>
-          <Header></Header>
+          <Header />
 
           <div className={cn('flex-grow', 'min-h-[70vh]', 'relative', jakarta.className)}>
-            <Notification></Notification>
+            <Notification />
 
             {children}
           </div>
 
-          <Footer></Footer>
+          <Footer />
         </div>
       </body>
     </html>

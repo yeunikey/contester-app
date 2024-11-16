@@ -14,7 +14,7 @@ function Footer() {
   return (
     <Container parent={s.footer} content={s.content}>
       <Side>
-        <Company></Company>
+        <Company />
         <div className={s.company__lore}>
           Official website of Contester <br />
           Astana IT University
@@ -22,7 +22,7 @@ function Footer() {
       </Side>
 
       <Side>
-        <Links></Links>
+        <Links />
       </Side>
     </Container>
   )
@@ -34,13 +34,13 @@ function Links() {
       <div className={s.links}>
         <div className={s.links__title}>General</div>
         <div className={s.links__items}>
-          <Item text='Weeks' href='/dashboard/weeks' id='weeks'></Item>
+          <Item text='Weeks' href='/dashboard/weeks' id='weeks'/>
         </div>
       </div>
       <div className={s.links}>
         <div className={s.links__title}>Account</div>
         <div className={s.links__items}>
-          <Item text='Settings' href='/dashboard/settings' id={'settings'}></Item>
+          <Item text='Settings' href='/dashboard/settings' id={'settings'}/>
         </div>
       </div>
     </>
@@ -65,7 +65,7 @@ function Company() {
 
   return (
     <Link className={s.company} href={'/'} onClick={() => navigation.actions.setPage('weeks')}>
-      <Image className={s.company__logo} src={logo} alt='logo'></Image>
+      <Image className={s.company__logo} src={logo} alt='logo'/>
       <div className={s.company__name}>CONTESTER</div>
     </Link>
   )

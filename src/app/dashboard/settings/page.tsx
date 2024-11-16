@@ -18,9 +18,9 @@ import { cn } from '@/core/utils'
 function Settings() {
   return (
     <Container parent={s.settings} content={s.content}>
-      <Account></Account>
-      <ChangePassword></ChangePassword>
-      <Exit></Exit>
+      <Account />
+      <ChangePassword />
+      <Exit />
     </Container>
   )
 }
@@ -34,7 +34,7 @@ function Exit() {
   return (
     <div className={s.side}>
       <div className={s.title}>Account</div>
-      <Button text='Exit from Account' className={s.exit} action={exit}></Button>
+      <Button text='Exit from Account' className={s.exit} action={exit}/>
     </div>
   )
 }
@@ -93,7 +93,7 @@ function ChangePassword() {
             input={<input ref={repeatRef} className={s.form__item} type='password' placeholder='Your password' />}
           ></Form>
         </form>
-        <Button text='Save password' className={s.form__button} action={fetchChanges}></Button>
+        <Button text='Save password' className={s.form__button} action={fetchChanges}/>
       </div>
     </div>
   )

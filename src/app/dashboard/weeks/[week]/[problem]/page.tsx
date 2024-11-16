@@ -80,15 +80,15 @@ function Page({ params }: { params: any }) {
   }, [])
 
   if (fetching) {
-    return <Loading className='h-[40vh]'></Loading>
+    return <Loading className='h-[40vh]'/>
   }
 
   return (
     <Container parent={s.problem}>
       {week == null || problem == null ? (
-        <NotFound></NotFound>
+        <NotFound />
       ) : (
-        <ProblemFound week={week} problem={problem}></ProblemFound>
+        <ProblemFound week={week} problem={problem}/>
       )}
     </Container>
   )
@@ -105,7 +105,7 @@ function NotFound() {
         text='Back'
         href='/dashboard/weeks'
         action={() => navigation.actions.setPage('weeks')}
-        icon={<ExitIcon></ExitIcon>}
+        icon={<ExitIcon />}
       ></Button>
     </div>
   )
@@ -118,13 +118,13 @@ function ProblemFound({ week, problem }: { week: IWeek; problem: IProblem }) {
     <>
       <div className={s.content}>
         <div className={s.actions}>
-          <Week week={week} completed={14}></Week>
-          <Button text='Back' href={`/dashboard/weeks/${week?.uniqueId}`} icon={<ExitIcon></ExitIcon>}></Button>
+          <Week week={week} completed={14}/>
+          <Button text='Back' href={`/dashboard/weeks/${week?.uniqueId}`} icon={<ExitIcon />}></Button>
         </div>
-        <Info problem={problem} week={week} update={update} setUpdate={setUpdate}></Info>
+        <Info problem={problem} week={week} update={update} setUpdate={setUpdate}/>
       </div>
 
-      <Attempts problem={problem} update={update} setUpdate={setUpdate}></Attempts>
+      <Attempts problem={problem} update={update} setUpdate={setUpdate}/>
     </>
   )
 }

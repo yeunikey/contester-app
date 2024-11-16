@@ -23,12 +23,12 @@ function Header() {
   return (
     <Container parent={s.header} content={s.content}>
       <Side>
-        <Company></Company>
-        <Links></Links>
+        <Company />
+        <Links />
       </Side>
 
       <Side>
-        <Action></Action>
+        <Action />
       </Side>
     </Container>
   )
@@ -45,7 +45,7 @@ function Company() {
 
   return (
     <Link className={s.company} href={'/'} onClick={() => navigation.actions.setPage('weeks')}>
-      <Image className={s.company__logo} src={logo} alt='logo'></Image>
+      <Image className={s.company__logo} src={logo} alt='logo'/>
       <div className={s.company__name}>CONTESTER</div>
     </Link>
   )
@@ -102,10 +102,10 @@ function Action() {
 
   return (
     <>
-      <Burger></Burger>
+      <Burger />
 
       <div className={s.theme} onClick={toggleDark}>
-        <ThemeIcon className={s.theme__icon} alt='theme'></ThemeIcon>
+        <ThemeIcon className={s.theme__icon} alt='theme'/>
       </div>
 
       {auth.authentificated && (
@@ -115,7 +115,7 @@ function Action() {
       )}
 
       {!auth.authentificated && (
-        <Button text='Login' className={s.button} icon={<LoginIcon alt='login'></LoginIcon>} href='/auth'></Button>
+        <Button text='Login' className={s.button} icon={<LoginIcon alt='login'/>} href='/auth'></Button>
       )}
     </>
   )

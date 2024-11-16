@@ -62,7 +62,7 @@ function Attempts({ problem, update, setUpdate }: { problem: IProblem; update: b
 
       <div className={s.attempts__content}>
         {attempts.map((attempt: IAttempt, i) => {
-          return <Attempt key={i} attempt={attempt}></Attempt>
+          return <Attempt key={i} attempt={attempt}/>
         })}
       </div>
     </div>
@@ -125,7 +125,7 @@ function Attempt({ attempt }: { attempt: IAttempt }) {
               })}
             </div>
           ) : (
-            <Loading className='h-32 w-full'></Loading>
+            <Loading className='h-32 w-full'/>
           )}
         </div>
       )}

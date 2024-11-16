@@ -49,17 +49,17 @@ function Page() {
   }
 
   if (auth.user == null) {
-    return <Loading className='min-h-[40vh] w-full'></Loading>
+    return <Loading className='min-h-[40vh] w-full'/>
   }
 
   if (auth.user.role != 'ADMIN') {
-    return <NotAdmin></NotAdmin>
+    return <NotAdmin />
   }
 
   return (
     <Container parent={s.settings} content={s.content}>
-      <General nameRef={nameRef} closedRef={closedRef} createWeek={fetchData}></General>
-      <Deadline deadlineRef={deadlineRef} startRef={startRef}></Deadline>
+      <General nameRef={nameRef} closedRef={closedRef} createWeek={fetchData}/>
+      <Deadline deadlineRef={deadlineRef} startRef={startRef}/>
     </Container>
   )
 }
@@ -75,7 +75,7 @@ function NotAdmin() {
         text='Back'
         href='/dashboard/weeks'
         action={() => navigation.actions.setPage('weeks')}
-        icon={<ExitIcon></ExitIcon>}
+        icon={<ExitIcon />}
       ></Button>
     </div>
   )
@@ -86,11 +86,11 @@ function Deadline({ deadlineRef, startRef }: { deadlineRef: any; startRef: any }
     <Side title='Deadline'>
       <Form
         title='Start date'
-        input={<input ref={startRef} className={s.form__item} type='datetime-local'></input>}
+        input={<input ref={startRef} className={s.form__item} type='datetime-local'/>}
       ></Form>
       <Form
         title='Deadline date'
-        input={<input ref={deadlineRef} className={s.form__item} type='datetime-local'></input>}
+        input={<input ref={deadlineRef} className={s.form__item} type='datetime-local'/>}
       ></Form>
     </Side>
   )
@@ -109,7 +109,7 @@ function General({ nameRef, closedRef, createWeek }: { nameRef: any; closedRef: 
         <label>is closed?</label>
       </div>
 
-      <Button text='Create week' className={cn(s.form__button, s.create__button)} action={createWeek}></Button>
+      <Button text='Create week' className={cn(s.form__button, s.create__button)} action={createWeek}/>
     </Side>
   )
 }

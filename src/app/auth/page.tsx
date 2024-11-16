@@ -27,7 +27,7 @@ function Auth() {
             <div className={s.title}>Authorization</div>
             <div className={s.subtitle}>Enter your account</div>
 
-            <Forms></Forms>
+            <Forms />
           </div>
         </div>
       </div>
@@ -164,7 +164,7 @@ function Forms() {
         </Row>
       </div>
       <div className={s.button}>
-        <Button text='Login' icon={<LoginIcon></LoginIcon>} action={login}></Button>
+        <Button text='Login' icon={<LoginIcon />} action={login}></Button>
       </div>
     </>
   )

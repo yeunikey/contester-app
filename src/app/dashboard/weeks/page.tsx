@@ -48,9 +48,9 @@ function Weeks() {
 
       <div className={s.list}>
         {weeks.map((week, i) => {
-          return <Week key={i} week={week} completed={0}></Week>
+          return <Week key={i} week={week} completed={0}/>
         })}
-        {auth.user?.role == 'ADMIN' && <CreateWeek></CreateWeek>}
+        {auth.user?.role == 'ADMIN' && <CreateWeek />}
       </div>
     </Container>
   )

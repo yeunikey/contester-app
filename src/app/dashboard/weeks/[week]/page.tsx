@@ -63,12 +63,12 @@ function Page({ params }: { params: any }) {
   }, [])
 
   if (fetching) {
-    return <Loading className='h-[40vh]'></Loading>
+    return <Loading className='h-[40vh]'/>
   }
 
   return (
     <Container parent={s.page} content={s.content}>
-      {!week ? <NotFound></NotFound> : <FoundedWeek week={week}></FoundedWeek>}
+      {!week ? <NotFound /> : <FoundedWeek week={week}/>}
     </Container>
   )
 }
@@ -84,7 +84,7 @@ function NotFound() {
         text='Back'
         href='/dashboard/weeks'
         action={() => navigation.actions.setPage('weeks')}
-        icon={<ExitIcon></ExitIcon>}
+        icon={<ExitIcon />}
       ></Button>
     </div>
   )
@@ -96,17 +96,17 @@ function FoundedWeek({ week }: { week: IWeek }) {
   return (
     <>
       <div className={s.actions}>
-        <Week week={week} completed={0}></Week>
-        <Button text='Back' href='/dashboard/weeks' icon={<ExitIcon></ExitIcon>}></Button>
+        <Week week={week} completed={0}/>
+        <Button text='Back' href='/dashboard/weeks' icon={<ExitIcon />}></Button>
 
-        {auth.user?.role == 'ADMIN' && <Admin week={week}></Admin>}
+        {auth.user?.role == 'ADMIN' && <Admin week={week}/>}
       </div>
       <div className={s.problems}>
         <div className={s.problems__title}>Problems list</div>
         <div className={s.problems__list}>
           {week &&
             (week?.problems as IProblem[]).map((problem, i) => {
-              return <Problem key={i} problem={problem} i={i + 1} completed={false}></Problem>
+              return <Problem key={i} problem={problem} i={i + 1} completed={false}/>
             })}
         </div>
       </div>
@@ -139,8 +139,8 @@ function Admin({ week }: { week: IWeek }) {
           router.push('/dashboard/weeks/' + week.uniqueId + '/create')
         }}
       ></Button>
-      <Button text='Edit Week'></Button>
-      <Button text='Delete week' className={s.removeweek} action={fetchDelete}></Button>
+      <Button text='Edit Week'/>
+      <Button text='Delete week' className={s.removeweek} action={fetchDelete}/>
     </div>
   )
 }

@@ -57,19 +57,19 @@ function Sidebar({ toggle }: { toggle: any }) {
         <div className={s.sidebar__upper}>
           <div className={s.sidebar__title}>Sidebar</div>
           <div className={s.sidebar__close} onClick={toggle}>
-            <CloseIcon className={s.sidebar__close__icon}></CloseIcon>
+            <CloseIcon className={s.sidebar__close__icon}/>
           </div>
         </div>
 
         <div className={s.sidebar__items}>
           {pages.map((page, i) => {
-            return <Item key={i} text={page.page} href={page.href}></Item>
+            return <Item key={i} text={page.page} href={page.href}/>
           })}
         </div>
 
         <div className={s.sidebar__actions}>
           <div className={s.theme} onClick={toggleDark}>
-            <ThemeIcon className={s.theme__icon} alt='theme'></ThemeIcon>
+            <ThemeIcon className={s.theme__icon} alt='theme'/>
           </div>
 
           {auth.authentificated && (
@@ -83,7 +83,7 @@ function Sidebar({ toggle }: { toggle: any }) {
           )}
 
           {!auth.authentificated && (
-            <Button text='Login' className={s.button} icon={<LoginIcon alt='login'></LoginIcon>} href='/auth'></Button>
+            <Button text='Login' className={s.button} icon={<LoginIcon alt='login'/>} href='/auth'></Button>
           )}
         </div>
       </div>

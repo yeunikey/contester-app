@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: any }) {
 
   return (
     <AuthProvider>
-      <Navigation></Navigation>
+      <Navigation />
 
       {children}
     </AuthProvider>
