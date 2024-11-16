@@ -1,11 +1,6 @@
 'use client'
 
-import { randomUUID } from 'crypto'
-import { relative } from 'path'
 import { useRef, useState } from 'react'
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import { a11yDark, a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark'
 
 import Button from '@/components/button/Button'
 

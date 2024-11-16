@@ -1,12 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import Container from '@/components/container/container'
 
 import s from './navigation.module.css'
-import { defaultPage, pages } from '@/core/constants/pages'
+
+import { pages } from '@/core/constants/pages'
 import { useNavigation } from '@/core/store/navigation'
 import { cn } from '@/core/utils'
 

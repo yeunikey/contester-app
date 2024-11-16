@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import xior, { XiorRequestConfig } from 'xior'
+import xior from 'xior'
 
 export const defaultOptions: Record<string, any> = {
   'Content-Type': 'application/json'

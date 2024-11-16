@@ -5,7 +5,6 @@ import { withAuthorization, xiorInstance } from '@/api/instance'
 
 import Loading from '../loading/loading'
 
-import s from './auth.module.css'
 import { IUser } from '@/core/entities'
 import { useAuth } from '@/core/store/auth'
 

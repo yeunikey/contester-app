@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 import logo from '../../_assets/logo.png'
 import Container from '../container/container'

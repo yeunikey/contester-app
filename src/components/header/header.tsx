@@ -2,8 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import LoginIcon from '../../_assets/icons/login.svg'
 import ThemeIcon from '../../_assets/icons/theme.svg'
@@ -14,7 +13,6 @@ import Container from '../container/container'
 import Burger from './burger/burger'
 import s from './header.module.css'
 import { pages } from '@/core/constants/pages'
-import { IStudent } from '@/core/entities'
 import { useAuth } from '@/core/store/auth'
 import { useNavigation } from '@/core/store/navigation'
 import { storedTheme, useTheme } from '@/core/store/theme'
