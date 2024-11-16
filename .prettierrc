@@ -24,10 +24,11 @@
     "^@/utils/(.*)$",
     "^@/services/(.*)$",
     "^@/api/(.*)$",
+    "(.scss)$",
+    "(.css)$",
     "^../(.*)",
     "^./(.*)",
     "^[./]",
-    "(.scss)$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": false,

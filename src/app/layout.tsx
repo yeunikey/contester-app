@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
-import localFont from 'next/font/local'
+import { Toaster } from 'sonner'
 
 import Footer from '@/components/footer/footer'
 import Header from '@/components/header/header'
 import Notification from '@/components/notification/notification'
 
-import './globals.css'
 import { cn } from '@/core/utils'
+
+import './globals.css'
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin']
@@ -53,6 +54,7 @@ export default function RootLayout({
           </div>
 
           <Footer></Footer>
+          <Toaster richColors />
         </div>
       </body>
     </html>
